@@ -140,6 +140,7 @@ require 'ceklogin.php';
                 // Memeriksa koneksi
                 if ($conn->connect_error) {
                     die("Koneksi gagal: " . $conn->connect_error);
+                    
                 }
                 ?>
                 <div class="card">
