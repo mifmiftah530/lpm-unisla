@@ -146,7 +146,7 @@ require 'ceklogin.php';
                                     <th>Auditee / Unit</th>
                                     <th>Instrumen</th>
                                     <th>Tahun</th>
-                                    <th>Auditor</th>
+                                    <th>Auditee</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

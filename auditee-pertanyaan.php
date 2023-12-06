@@ -191,8 +191,8 @@ require 'ceklogin.php';
                                                 <th width="10px">NO</th>
                                                 <th widht="20px"></th>
                                                 <th width="700px">KOMPONEN</th>
-                                                <th widht="100px">Penilaian Audite</th>
                                                 <th widht="100px">Penilaian Auditor</th>
+                                                <th widht="100px">Penilaian Auditee</th>
                                                 <td width="50px"></td>
                                                 <td width="50px"></td>
                                             </tr>
