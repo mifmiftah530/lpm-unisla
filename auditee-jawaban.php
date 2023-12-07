@@ -151,29 +151,20 @@ require 'ceklogin.php';
                                 <div class="col-12">
                                     <h4>Instrumen</h4>
 
-                                    <table style="text-align: justify;" class="table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th width="10px">NO</th>
-                                                <th widht="20px"></th>
-                                                <th width="1000px">KOMPONEN</th>
-                                                <th widht="100px">Penilaian Auditor</th>
-                                                <th widht="100px">Penilaian Auditee</th>
-                                                <th width="50px">Aksi</th>
-                                                <th width="50px">Dokumen</th>
-                                            </tr>
-
-                                            <?php
-                                            // Ambil nilai id_kriteria dan id_indikator dari URL
-                                            $id_indikator = isset($_GET['id_indikator']) ? $_GET['id_indikator'] : null;
-                                            $id_kriteria = isset($_GET['id_kriteria']) ? $_GET['id_kriteria'] : null;
-                                            //$id_audit = isset($_GET['id_audit']) ? $_GET['id_audit'] : null;
 
 
-                                            if ($id_indikator !== null && $id_kriteria !== null) {
 
-                                                if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
-                                                    $sql = "SELECT
+                                    <?php
+                                    // Ambil nilai id_kriteria dan id_indikator dari URL
+                                    $id_indikator = isset($_GET['id_indikator']) ? $_GET['id_indikator'] : null;
+                                    $id_kriteria = isset($_GET['id_kriteria']) ? $_GET['id_kriteria'] : null;
+                                    //$id_audit = isset($_GET['id_audit']) ? $_GET['id_audit'] : null;
+
+
+                                    if ($id_indikator !== null && $id_kriteria !== null) {
+
+                                        if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
+                                            $sql = "SELECT
                                                 indikator.INDIKATOR,
                                                 jawab.JAWAB,
                                                 jawab.NILAI,
@@ -191,8 +182,8 @@ require 'ceklogin.php';
                                             WHERE 
                                                 audit.ID_AUDIT = '$id_indikator' AND
                                                 jawab.ID_KRITERIA = '$id_kriteria'";
-                                                } else {
-                                                    $sql = "SELECT
+                                        } else {
+                                            $sql = "SELECT
                                                 indikator.INDIKATOR,
                                                 jawab.JAWAB,
                                                 jawab.NILAI,
@@ -210,180 +201,227 @@ require 'ceklogin.php';
                                             WHERE 
                                                 
                                                 jawab.ID_KRITERIA = '$id_kriteria'";
+                                        }
+
+                                        $result = $conn->query($sql);
+
+                                        if ($result->num_rows > 0) {
+                                            // Initialize an associative array to store results grouped by INDIKATOR
+                                            $groupedResults = array();
+
+                                            // Fetch each row and group by INDIKATOR
+                                            while ($row = $result->fetch_assoc()) {
+                                                $indikator = $row["INDIKATOR"];
+                                                $n_auditee = $row["NILAI_AUDITEE"];
+                                                $n_auditor = $row["NILAI_AUDITOR"];
+                                                $doc = $row["DOKUMEN"];
+
+                                                // Check if the INDIKATOR is already a key in the array
+                                                if (!isset($groupedResults[$indikator])) {
+                                                    $groupedResults[$indikator] = array();
                                                 }
+                                            }
 
-                                                $result = $conn->query($sql);
+                                            // Output data for each INDIKATOR group
+                                            $rowNumber = 1;
+                                            foreach ($groupedResults as $indikator => $group) {
+                                    ?>
+                                                <table style="text-align: justify;" class="table table-striped table-hover">
 
-                                                if ($result->num_rows > 0) {
-                                                    // Initialize an associative array to store results grouped by INDIKATOR
-                                                    $groupedResults = array();
+                                                    <?php
+                                                    $maxIndikatorQuery = "SELECT MAX(ID_INDIKATOR) AS max_indikator FROM indikator WHERE ID_KRITERIA = '$id_kriteria'";
+                                                    $maxIndikatorResult = $conn->query($maxIndikatorQuery);
 
-                                                    // Fetch each row and group by INDIKATOR
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        $indikator = $row["INDIKATOR"];
-                                                        $n_auditee = $row["NILAI_AUDITEE"];
-                                                        $n_auditor = $row["NILAI_AUDITOR"];
-                                                        $doc = $row["DOKUMEN"];
-
-                                                        // Check if the INDIKATOR is already a key in the array
-                                                        if (!isset($groupedResults[$indikator])) {
-                                                            $groupedResults[$indikator] = array();
-                                                        }
-
-                                                        // Add the JAWAB and NILAI values to the group
-                                                        //$groupedResults[$indikator][] = array(
-                                                        //"Jawab" => $row["JAWAB"],
-                                                        //"Nilai" => $row["NILAI"]
-                                                        //);
-                                                        //$id_kriteria = $id_kr; // Replace with the desired ID_KRITERIA value
-                                                        //$id_indikator = $id_in; // Replace with the desired ID_INDIKATOR value
+                                                    if ($maxIndikatorResult->num_rows > 0) {
+                                                        $maxIndikatorRow = $maxIndikatorResult->fetch_assoc();
+                                                        $maxIndikator = $maxIndikatorRow['max_indikator'];
+                                                    } else {
+                                                        // Tangani kasus ketika tidak ada baris yang dikembalikan
+                                                        $maxIndikator = 0;
                                                     }
-
-                                                    // Output data for each INDIKATOR group
-                                                    $rowNumber = 1;
-                                                    foreach ($groupedResults as $indikator => $group) { ?>
+                                                    ?>
+                                                    <!-- Tambahkan tautan ini di tempat Anda ingin menampilkan navigasi -->
+                                                    <thead>
                                                         <tr>
-                                                            <td style="text-align: left; vertical-align: top;"><?php echo $rowNumber++ ?></td>
+                                                            <td><?php
+                                                                $prevIndikator = $id_indikator - 1;
+                                                                if ($prevIndikator > 0) {
+                                                                    echo '<a href="auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($prevIndikator) . '" class="btn btn-secondary">Sebelumnya</a>';
+                                                                } ?></td>
                                                             <td></td>
-                                                            <td style="text-align: left; vertical-align: top;">
-                                                                <?php
-                                                                $kategori = mysqli_query($conn, "SELECT * FROM indikator WHERE ID_INDIKATOR = $id_indikator");
-                                                                while ($z = mysqli_fetch_array($kategori)) {
-                                                                ?>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><?php
+                                                                // Periksa jika ada halaman berikutnya
+                                                                $nextIndikator = $id_indikator + 1;
+                                                                if ($nextIndikator <= $maxIndikator) {
+                                                                    echo '<a href="auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($nextIndikator) . '" class="btn btn-primary">Selanjutnya</a>';
+                                                                }
+
+                                                                // Periksa jika ada halaman sebelumnya
+
+                                                                ?></td>
+                                                        </tr>
+
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="10px">NO</th>
+                                                                <th widht="20px"></th>
+                                                                <th width="1000px">KOMPONEN</th>
+                                                                <th widht="100px">Penilaian Auditor</th>
+                                                                <th widht="100px">Penilaian Auditee</th>
+                                                                <th width="50px">Aksi</th>
+                                                                <th width="50px">Dokumen</th>
+                                                            </tr>
 
 
-                                                                    <?php echo $z['INDIKATOR'] ?>
-                                                                <?php } ?></td>
+
+
+                                                            <tr>
+                                                                <td style="text-align: left; vertical-align: top;"><?php echo $rowNumber++ ?></td>
+                                                                <td></td>
+                                                                <td style="text-align: left; vertical-align: top;">
+                                                                    <?php
+                                                                    $kategori = mysqli_query($conn, "SELECT * FROM indikator WHERE ID_INDIKATOR = $id_indikator");
+                                                                    while ($z = mysqli_fetch_array($kategori)) {
+                                                                    ?>
+
+
+                                                                        <?php echo $z['INDIKATOR'] ?>
+                                                                    <?php } ?></td>
 
 
 
-                                                            <td style="text-align: left; vertical-align: top;">
-                                                                <?php echo ($n_auditor !== null) ? $n_auditor : '<span style="color: red; font-style: italic;">Belum ada nilai</span>'; ?>
-                                                            </td>
-                                                            <td style="text-align: left; vertical-align: top;">
-                                                                <?php echo ($n_auditee !== null) ? $n_auditee : '<span style="color: red; font-style: italic;">Belum ada nilai</span>'; ?>
-                                                            </td>
+                                                                <td style="text-align: left; vertical-align: top;">
+                                                                    <?php echo ($n_auditor !== null) ? $n_auditor : '<span style="color: red; font-style: italic;">Belum ada nilai</span>'; ?>
+                                                                </td>
+                                                                <td style="text-align: left; vertical-align: top;">
+                                                                    <?php echo ($n_auditee !== null) ? $n_auditee : '<span style="color: red; font-style: italic;">Belum ada nilai</span>'; ?>
+                                                                </td>
 
 
-                                                            <td style="text-align: left; vertical-align: top;">
-                                                                <form action="" method="POST">
-                                                                    <select class="form-control" id="nilai" name="nilai" required>
-                                                                        <option value="">--Pilih--</option>
-                                                                        <?php
-                                                                        $kategori = mysqli_query($conn, "SELECT indikator.INDIKATOR, jawab.JAWAB, jawab.NILAI FROM indikator JOIN jawab ON indikator.ID_INDIKATOR = jawab.ID_INDIKATOR WHERE indikator.ID_INDIKATOR = $id_indikator AND jawab.ID_KRITERIA = $id_kriteria");
-                                                                        while ($z = mysqli_fetch_array($kategori)) {
-                                                                        ?>
-                                                                            <option value="<?php echo $z['NILAI'] ?>">
-                                                                                <?php echo $z['NILAI'] ?>
+                                                                <td style="text-align: left; vertical-align: top;">
+                                                                    <form action="" method="POST">
+                                                                        <select class="form-control" id="nilai" name="nilai" required>
+                                                                            <option value="">--Pilih--</option>
+                                                                            <?php
+                                                                            $kategori = mysqli_query($conn, "SELECT indikator.INDIKATOR, jawab.JAWAB, jawab.NILAI FROM indikator JOIN jawab ON indikator.ID_INDIKATOR = jawab.ID_INDIKATOR WHERE indikator.ID_INDIKATOR = $id_indikator AND jawab.ID_KRITERIA = $id_kriteria");
+                                                                            while ($z = mysqli_fetch_array($kategori)) {
+                                                                            ?>
+                                                                                <option value="<?php echo $z['NILAI'] ?>">
+                                                                                    <?php echo $z['NILAI'] ?>
 
-                                                                            <?php } ?>
-                                                                            </option>
-                                                                    </select>
-                                                                    <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
-                                                                </form>
-                                                            </td>
+                                                                                <?php } ?>
+                                                                                </option>
+                                                                        </select>
+                                                                        <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
+                                                                    </form>
+                                                                </td>
 
 
-                                                            <td style="text-align: left; vertical-align: top;">
-                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                    +
-                                                                </button>
-                                                            </td>
-                                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">TAMBAH DATA PERBAIKAN</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <td style="text-align: left; vertical-align: top;">
+                                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                        +
+                                                                    </button>
+                                                                </td>
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">TAMBAH DATA PERBAIKAN</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <form action="" method="POST">
+                                                                                <div class="modal-body">
+                                                                                    <!-- Formulir untuk pengisian data -->
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="urll">URL</label>
+                                                                                        <input type="text" class="form-control" id="urll" name="urll" placeholder="Masukkan URL">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="akar_penyebab">Akar Penyebab</label>
+                                                                                        <textarea class="form-control" id="akar_penyebab" rows="3" placeholder="Apa akar penyebabnya?"></textarea>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="rencana_perbaikan">Rencana
+                                                                                            Perbaikan</label>
+                                                                                        <textarea class="form-control" id="rencana_perbaikan" rows="3" placeholder="Apa rencana perbaikannya?"></textarea>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="rentang_waktu_perbaikan">Rentang
+                                                                                            Waktu Perbaikan</label>
+                                                                                        <input type="text" class="form-control" id="rentang_waktu_perbaikan" placeholder="Rentang waktu perbaikan">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+
+                                                                                    <button type="submit" class="btn btn-primary" name="simpen">Simpan</button>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
-                                                                        <form action="" method="POST">
-                                                                            <div class="modal-body">
-                                                                                <!-- Formulir untuk pengisian data -->
-
-                                                                                <div class="form-group">
-                                                                                    <label for="urll">URL</label>
-                                                                                    <input type="text" class="form-control" id="urll" name="urll" placeholder="Masukkan URL">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="akar_penyebab">Akar Penyebab</label>
-                                                                                    <textarea class="form-control" id="akar_penyebab" rows="3" placeholder="Apa akar penyebabnya?"></textarea>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="rencana_perbaikan">Rencana
-                                                                                        Perbaikan</label>
-                                                                                    <textarea class="form-control" id="rencana_perbaikan" rows="3" placeholder="Apa rencana perbaikannya?"></textarea>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="rentang_waktu_perbaikan">Rentang
-                                                                                        Waktu Perbaikan</label>
-                                                                                    <input type="text" class="form-control" id="rentang_waktu_perbaikan" placeholder="Rentang waktu perbaikan">
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
-                                                                                <button type="submit" class="btn btn-primary" name="simpen">Simpan</button>
-                                                                            </div>
-                                                                        </form>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td><b>NILAI</b></td>
-                                                            <td><b>JAWABAN</b></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <?php // foreach ($group as $item) : 
-                                                        ?><?php
+                                                            </tr>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td><b>NILAI</b></td>
+                                                                <td><b>JAWABAN</b></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <?php // foreach ($group as $item) : 
+                                                            ?><?php
                                                             $kategori = mysqli_query($conn, "SELECT * FROM jawab WHERE ID_INDIKATOR = $id_indikator");
                                                             while ($z = mysqli_fetch_array($kategori)) {
                                                             ?>
-                                                        <tr>
+                                                            <tr>
 
-                                                            <td></td>
+                                                                <td></td>
 
-                                                            <td style="text-align: left; vertical-align: top;"><?php echo $z['NILAI'] ?></td>
-                                                            <td style="text-align: left; vertical-align: top;"><?php echo $z['JAWAB'] ?></td>
+                                                                <td style="text-align: left; vertical-align: top;"><?php echo $z['NILAI'] ?></td>
+                                                                <td style="text-align: left; vertical-align: top;"><?php echo $z['JAWAB'] ?></td>
 
 
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
 
-                                                    <?php // endforeach; 
+                                                        <?php // endforeach; 
                                                             } ?>
 
-                                                    <tr>
-                                                        <td></td>
-                                                        <td>note</td>
-                                                    </tr> <?php
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>note</td>
+                                                        </tr> <?php
 
 
+                                                            }
+                                                        } else {
+                                                            echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                            echo '<script>window.location.href = "auditee-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                         }
+
+                                                        // $conn->close();
                                                     } else {
-                                                        echo "0 results";
-                                                    }
+                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                        echo '<script>window.location.href = "auditee-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
+                                                    } ?>
 
-                                                    // $conn->close();
-                                                } else {
-                                                    // Handle ketika variabel tidak terdefinisi atau kosong
-                                                    echo "Variabel ID_KRITERIA atau ID_INDIKATOR tidak terdefinisi atau kosong.";
-                                                } ?>
-
-                                        </thead>
-                                        <tbody>
-                                            <!-- Isi sesuai kebutuhan -->
-                                        </tbody>
-                                    </table>
+                                                        </thead>
+                                                    <tbody>
+                                                        <!-- Isi sesuai kebutuhan -->
+                                                    </tbody>
+                                                </table>
                                 </div>
                             </div>
                         </div>

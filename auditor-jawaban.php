@@ -140,7 +140,6 @@ require 'ceklogin.php';
                 // Memeriksa koneksi
                 if ($conn->connect_error) {
                     die("Koneksi gagal: " . $conn->connect_error);
-                    
                 }
                 ?>
                 <div class="card">
@@ -148,34 +147,24 @@ require 'ceklogin.php';
                     <div class="card-body">
                         <div class="container">
                             <div class="row align-items-start">
-
                                 <div class="col-12">
-                                    <h4>Instrumen</h4>
-
-                                    <table style="text-align: justify;" class="table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th width="10px">NO</th>
-                                                <th widht="20px"></th>
-                                                <th width="1000px">KOMPONEN</th>
-                                                <th widht="100px">Penilaian Auditee</th>
-                                                <th widht="100px">Penilaian Auditor</th>
-                                                <th width="50px">Aksi</th>
-                                                <th width="50px">Dokumen</th>
-                                            </tr>
-
-                                            <?php
-                                            // Ambil nilai id_kriteria dan id_indikator dari URL
-                                            $id_indikator = isset($_GET['id_indikator']) ? $_GET['id_indikator'] : null;
-                                            $id_kriteria = isset($_GET['id_kriteria']) ? $_GET['id_kriteria'] : null;
-                                            //$id_audit = isset($_GET['id_audit']) ? $_GET['id_audit'] : null;
+                                    <h4>Indikator</h4>
 
 
-                                            if ($id_indikator !== null && $id_kriteria !== null) {
 
-                                                if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
-                                                    $sql = "SELECT
+
+
+                                    <?php
+                                    // Ambil nilai id_kriteria dan id_indikator dari URL
+                                    $id_indikator = isset($_GET['id_indikator']) ? $_GET['id_indikator'] : null;
+                                    $id_kriteria = isset($_GET['id_kriteria']) ? $_GET['id_kriteria'] : null;
+
+                                    if ($id_indikator !== null && $id_kriteria !== null) {
+
+                                        if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
+                                            $sql = "SELECT
                                                 indikator.INDIKATOR,
+                                                indikator.ID_INDIKATOR,
                                                 jawab.JAWAB,
                                                 jawab.NILAI,
                                                 jawab.ID_JAWAB,
@@ -192,9 +181,10 @@ require 'ceklogin.php';
                                             WHERE 
                                                 audit.ID_AUDIT = '$id_indikator' AND
                                                 jawab.ID_KRITERIA = '$id_kriteria'";
-                                                } else {
-                                                    $sql = "SELECT
+                                        } else {
+                                            $sql = "SELECT
                                                 indikator.INDIKATOR,
+                                                indikator.ID_INDOKATOR,
                                                 jawab.JAWAB,
                                                 jawab.NILAI,
                                                 jawab.ID_JAWAB,
@@ -211,38 +201,81 @@ require 'ceklogin.php';
                                             WHERE 
                                                 
                                                 jawab.ID_KRITERIA = '$id_kriteria'";
+                                        }
+
+                                        $result = $conn->query($sql);
+
+                                        if ($result->num_rows > 0) {
+                                            // Initialize an associative array to store results grouped by INDIKATOR
+                                            $groupedResults = array();
+
+                                            // Fetch each row and group by INDIKATOR
+                                            while ($row = $result->fetch_assoc()) {
+                                                $indikator = $row["INDIKATOR"];
+                                                $n_auditee = $row["NILAI_AUDITEE"];
+                                                $n_auditor = $row["NILAI_AUDITOR"];
+                                                $doc = $row["DOKUMEN"];
+                                                // Check if the INDIKATOR is already a key in the array
+                                                if (!isset($groupedResults[$indikator])) {
+                                                    $groupedResults[$indikator] = array();
                                                 }
+                                            }
 
-                                                $result = $conn->query($sql);
+                                            // Output data for each INDIKATOR group
+                                            $rowNumber = 1;
+                                            foreach ($groupedResults as $indikator => $group) { ?>
+                                                <table style="text-align: justify;" class="table table-striped table-hover">
 
-                                                if ($result->num_rows > 0) {
-                                                    // Initialize an associative array to store results grouped by INDIKATOR
-                                                    $groupedResults = array();
+                                                    <thead>
+                                                        <?php
+                                                        // Ambil nilai maksimum id_indikator untuk id_kriteria saat ini
+                                                        $maxIndikatorQuery = "SELECT MAX(ID_INDIKATOR) AS max_indikator FROM indikator WHERE ID_KRITERIA = '$id_kriteria'";
+                                                        $maxIndikatorResult = $conn->query($maxIndikatorQuery);
 
-                                                    // Fetch each row and group by INDIKATOR
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        $indikator = $row["INDIKATOR"];
-                                                        $n_auditee = $row["NILAI_AUDITEE"];
-                                                        $n_auditor = $row["NILAI_AUDITOR"];
-                                                        $doc = $row["DOKUMEN"];
-
-                                                        // Check if the INDIKATOR is already a key in the array
-                                                        if (!isset($groupedResults[$indikator])) {
-                                                            $groupedResults[$indikator] = array();
+                                                        if ($maxIndikatorResult->num_rows > 0) {
+                                                            $maxIndikatorRow = $maxIndikatorResult->fetch_assoc();
+                                                            $maxIndikator = $maxIndikatorRow['max_indikator'];
+                                                        } else {
+                                                            // Tangani kasus ketika tidak ada baris yang dikembalikan
+                                                            $maxIndikator = 0;
                                                         }
+                                                        ?>
+                                                        <!-- Tambahkan tautan ini di tempat Anda ingin menampilkan navigasi -->
+                                                        <tr>
+                                                            <td><?php
+                                                                $prevIndikator = $id_indikator - 1;
+                                                                if ($prevIndikator > 0) {
+                                                                    echo '<a href="auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($prevIndikator) . '" class="btn btn-secondary">Sebelumnya</a>';
+                                                                } ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><?php
+                                                                // Periksa jika ada halaman berikutnya
+                                                                $nextIndikator = $id_indikator + 1;
+                                                                if ($nextIndikator <= $maxIndikator) {
+                                                                    echo '<a href="auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($nextIndikator) . '" class="btn btn-primary">Selanjutnya</a>';
+                                                                }
 
-                                                        // Add the JAWAB and NILAI values to the group
-                                                        //$groupedResults[$indikator][] = array(
-                                                        //"Jawab" => $row["JAWAB"],
-                                                        //"Nilai" => $row["NILAI"]
-                                                        //);
-                                                        //$id_kriteria = $id_kr; // Replace with the desired ID_KRITERIA value
-                                                        //$id_indikator = $id_in; // Replace with the desired ID_INDIKATOR value
-                                                    }
+                                                                // Periksa jika ada halaman sebelumnya
 
-                                                    // Output data for each INDIKATOR group
-                                                    $rowNumber = 1;
-                                                    foreach ($groupedResults as $indikator => $group) { ?>
+                                                                ?></td>
+                                                        </tr>
+
+
+
+
+                                                        <tr>
+                                                            <th width="10px">NO</th>
+                                                            <th widht="20px"></th>
+                                                            <th width="1000px">KOMPONEN</th>
+                                                            <th widht="100px">Penilaian Auditee</th>
+                                                            <th widht="100px">Penilaian Auditor</th>
+                                                            <th width="50px">Aksi</th>
+                                                            <th width="50px">Dokumen</th>
+                                                        </tr>
                                                         <tr>
                                                             <td style="text-align: left; vertical-align: top;"><?php echo $rowNumber++ ?></td>
                                                             <td></td>
@@ -357,21 +390,23 @@ require 'ceklogin.php';
 
                                                         }
                                                     } else {
-                                                        echo "0 results";
+                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                        echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                     }
 
                                                     // $conn->close();
                                                 } else {
                                                     // Handle ketika variabel tidak terdefinisi atau kosong
-                                                    echo "Variabel ID_KRITERIA atau ID_INDIKATOR tidak terdefinisi atau kosong.";
+                                                    echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                    echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                 }
                                                             ?>
 
-                                        </thead>
-                                        <tbody>
-                                            <!-- Isi sesuai kebutuhan -->
-                                        </tbody>
-                                    </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Isi sesuai kebutuhan -->
+                                                    </tbody>
+                                                </table>
                                 </div>
                             </div>
                         </div>

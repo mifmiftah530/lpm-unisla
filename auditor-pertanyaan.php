@@ -134,6 +134,20 @@ require 'ceklogin.php';
                             <div class="row align-items-start">
                                 <div class="col-4">
                                     <h4>Standar</h4> <br>
+                                    <?php
+                                    $idj = $_GET['id'];
+                                    $query = "SELECT * FROM jadwal";
+                                    $result = $koneksi->query($query);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $unit = $row["UNIT"];
+                                        }
+                                    ?>
+
+                                        <a href="auditor-tersedia.php?id=<?= urlencode($unit); ?>" class="btn btn-primary">Kembali</a>
+                                    <?php
+                                    }
+                                    ?>
                                     <!-- Bagian Tabel Standar -->
                                     <table class="table table-striped">
                                         <thead>
@@ -145,38 +159,42 @@ require 'ceklogin.php';
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            $id = $_GET['id'];
-                                            $kriteria = mysqli_query($koneksi, "SELECT * FROM `indikator` WHERE `ID_KRITERIA` = $id
+                                            //$id = $_GET['id'];
+                                            $id = isset($_GET['id']) ? $_GET['id'] : null; // tambahkan pemeriksaan ini
+                                            if ($id !== null) {
+                                                $kriteria = mysqli_query($koneksi, "SELECT * FROM `indikator` WHERE `ID_KRITERIA` = $id
                                             ");
-                                            if (mysqli_num_rows($kriteria) > 0) {
-                                                while ($row = mysqli_fetch_array($kriteria)) {
+                                                if (mysqli_num_rows($kriteria) > 0) {
+                                                    while ($row = mysqli_fetch_array($kriteria)) {
                                             ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php echo $no++ ?>
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <form action="auditor-jawaban.php" method="get">
-                                                                <input type="hidden" name="id_indikator" value="<?php echo $row['ID_INDIKATOR']; ?>">
-                                                                <input type="hidden" name="id_kriteria" value="<?php echo $row['ID_KRITERIA']; ?>">
-                                                                <!--<input type="hidden" name="id_audit" value="<?php // echo $row['ID_AUDIT']; ?>">-->
-                                                                
-                                                                <button type="submit" class="btn btn-success" style="text-align: left; vertical-align: top;" >
-                                                                    <?php echo $row['INDIKATOR'] ?>
-                                                                </button>
-                                                            </form>
-                                                        </td>
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $no++ ?>
+                                                            </td>
 
+                                                            <td>
+                                                                <form action="auditor-jawaban.php" method="get">
+                                                                    <input type="hidden" name="id_indikator" value="<?php echo $row['ID_INDIKATOR']; ?>">
+                                                                    <input type="hidden" name="id_kriteria" value="<?php echo $row['ID_KRITERIA']; ?>">
+                                                                    <!--<input type="hidden" name="id_audit" value="<?php // echo $row['ID_AUDIT']; 
+                                                                                                                    ?>">-->
+
+                                                                    <button type="submit" class="btn btn-success" style="text-align: left; vertical-align: top;">
+                                                                        <?php echo $row['INDIKATOR'] ?>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+
+                                                        </tr>
+                                                    <?php
+                                                    }
+                                                } else {
+                                                    ?>
+                                                    <tr>
+                                                        <td colspan="3">TIDAK ADA DATA</td>
                                                     </tr>
-                                                <?php
-                                                }
-                                            } else {
-                                                ?>
-                                                <tr>
-                                                    <td colspan="3">TIDAK ADA DATA</td>
-                                                </tr>
                                             <?php
+                                                }
                                             }
                                             ?>
                                         </tbody>
@@ -218,4 +236,5 @@ require 'ceklogin.php';
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
+
 </html>
