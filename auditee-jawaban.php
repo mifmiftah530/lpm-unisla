@@ -245,8 +245,8 @@ require 'ceklogin.php';
                                                         <tr>
                                                             <td><?php
                                                                 $prevIndikator = $id_indikator - 1;
-                                                                if ($prevIndikator > 0) {
-                                                                    echo '<a href="auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($prevIndikator) . '" class="btn btn-secondary">Sebelumnya</a>';
+                                                                if ($prevIndikator > -1) {
+                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">Sebelumnya</a>';
                                                                 } ?></td>
                                                             <td></td>
                                                             <td></td>
@@ -257,7 +257,7 @@ require 'ceklogin.php';
                                                                 // Periksa jika ada halaman berikutnya
                                                                 $nextIndikator = $id_indikator + 1;
                                                                 if ($nextIndikator <= $maxIndikator) {
-                                                                    echo '<a href="auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($nextIndikator) . '" class="btn btn-primary">Selanjutnya</a>';
+                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya</a>';
                                                                 }
 
                                                                 // Periksa jika ada halaman sebelumnya
@@ -379,9 +379,9 @@ require 'ceklogin.php';
                                                             </tr>
                                                             <?php // foreach ($group as $item) : 
                                                             ?><?php
-                                                            $kategori = mysqli_query($conn, "SELECT * FROM jawab WHERE ID_INDIKATOR = $id_indikator");
-                                                            while ($z = mysqli_fetch_array($kategori)) {
-                                                            ?>
+                                                                $kategori = mysqli_query($conn, "SELECT * FROM jawab WHERE ID_INDIKATOR = $id_indikator");
+                                                                while ($z = mysqli_fetch_array($kategori)) {
+                                                                ?>
                                                             <tr>
 
                                                                 <td></td>
@@ -397,7 +397,7 @@ require 'ceklogin.php';
                                                             </tr>
 
                                                         <?php // endforeach; 
-                                                            } ?>
+                                                                } ?>
 
                                                         <tr>
                                                             <td></td>

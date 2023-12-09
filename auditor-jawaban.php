@@ -245,7 +245,7 @@ require 'ceklogin.php';
                                                             <td><?php
                                                                 $prevIndikator = $id_indikator - 1;
                                                                 if ($prevIndikator > 0) {
-                                                                    echo '<a href="auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($prevIndikator) . '" class="btn btn-secondary">Sebelumnya</a>';
+                                                                    echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">Kembali</a>';
                                                                 } ?></td>
                                                             <td></td>
                                                             <td></td>
@@ -256,7 +256,7 @@ require 'ceklogin.php';
                                                                 // Periksa jika ada halaman berikutnya
                                                                 $nextIndikator = $id_indikator + 1;
                                                                 if ($nextIndikator <= $maxIndikator) {
-                                                                    echo '<a href="auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($nextIndikator) . '" class="btn btn-primary">Selanjutnya</a>';
+                                                                    echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya</a>';
                                                                 }
 
                                                                 // Periksa jika ada halaman sebelumnya

@@ -145,6 +145,7 @@ require 'ceklogin.php';
                                     ?>
 
                                         <a href="auditor-tersedia.php?id=<?= urlencode($unit); ?>" class="btn btn-primary">Kembali</a>
+                                        <a href="grafikauditor2.php" class="btn btn-warning">Grafik</a>
                                     <?php
                                     }
                                     ?>

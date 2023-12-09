@@ -133,7 +133,9 @@ require 'ceklogin.php';
                         <div class="container">
                             <div class="row align-items-start">
                                 <div class="col-4">
-                                    <h4>Standar</h4> <br>
+                                    <h4 class="mb-0">Standar</h4> <br>
+                                    <a href="auditee.php" class="btn btn-primary">Kembali</a>
+                                    <a href="grafikauditee.php" class="btn btn-warning">Grafik</a>
                                     <!-- Bagian Tabel Standar -->
                                     <table class="table table-striped">
                                         <thead>

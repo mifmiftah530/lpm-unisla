@@ -147,6 +147,7 @@ require 'ceklogin.php';
                                     ?>
 
                                         <a href="auditee-tersedia.php?id=<?= urlencode($unit); ?>" class="btn btn-primary">Kembali</a>
+                                        <a href="grafikauditee2.php" class="btn btn-warning">Grafik</a>
                                     <?php
                                     }
                                     ?>
