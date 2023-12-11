@@ -4,16 +4,19 @@
 require 'ceklogin.php';
 ?>
 <!-- db start -->
+<!-- db start -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" type="image/png/jpg" href="images/unisla.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Siami - Unisla</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -32,7 +35,8 @@ require 'ceklogin.php';
         </a>
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -44,7 +48,8 @@ require 'ceklogin.php';
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditee.php">Profil</a></li>
                     <li>
@@ -60,7 +65,8 @@ require 'ceklogin.php';
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading"><img src="ASSETS/logounisla.jpg" alt="" width="60px" height="60px"></div>
+                        <div class="sb-sidenav-menu-heading"><img src="ASSETS/logounisla.jpg" alt="" width="60px"
+                                height="60px"></div>
 
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditee.php">
@@ -68,44 +74,54 @@ require 'ceklogin.php';
 
                         </a>
                         <a class="nav-link" href="dashboard-auditee.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></i></div>
                             Akun
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="layout-static.html">Kelola Akun</a>
                                 <a class="nav-link" href="layout-sidenav-light.html">Kelola Akun Lagi</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                    aria-controls="pagesCollapseAuth">
                                     Kelola Data
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="login.html">Login</a>
                                         <a class="nav-link" href="register.html">Register</a>
                                         <a class="nav-link" href="password.html">Forgot Password</a>
                                     </nav>
                                 </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
+                                    aria-controls="pagesCollapseError">
                                     Kelola Data Lagi
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="401.html">401 Page</a>
                                         <a class="nav-link" href="404.html">404 Page</a>
@@ -115,15 +131,15 @@ require 'ceklogin.php';
                             </nav>
                         </div>
                         <a class="nav-link" href="auditee.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
                     </div>
                 </div>
             </nav>
         </div>
-        <!-- Navbar Start -->
-
+        
+        
         <!-- konten Start -->
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
@@ -246,7 +262,9 @@ require 'ceklogin.php';
                                                             <td><?php
                                                                 $prevIndikator = $id_indikator - 1;
                                                                 if ($prevIndikator > -1) {
-                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">Sebelumnya</a>';
+                                                                   echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary"> <i class="fas fa-arrow-left"></i> Sebelumnya
+</a>';
+
                                                                 } ?></td>
                                                             <td></td>
                                                             <td></td>
@@ -257,7 +275,10 @@ require 'ceklogin.php';
                                                                 // Periksa jika ada halaman berikutnya
                                                                 $nextIndikator = $id_indikator + 1;
                                                                 if ($nextIndikator <= $maxIndikator) {
-                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya</a>';
+                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">
+                                                                    <i class="fas fa-arrow-right"></i> Selanjutnya
+                                                                </a>';
+                                                                
                                                                 }
 
                                                                 // Periksa jika ada halaman sebelumnya
@@ -338,21 +359,21 @@ require 'ceklogin.php';
                                                                                     <!-- Formulir untuk pengisian data -->
 
                                                                                     <div class="form-group">
-                                                                                        <label for="urll">URL</label>
-                                                                                        <input type="text" class="form-control" id="urll" name="urll" placeholder="Masukkan URL">
+                                                                                        <label for="urll">Masukan URL Baru <i style="color: red;">( Di isi oleh auditee )</i></label>
+                                                                                        <input type="text" class="form-control" id="urll" name="urll" placeholder="Masukkan URL ">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="akar_penyebab">Akar Penyebab</label>
+                                                                                        <label for="akar_penyebab">Akar Penyebabnya? <i style="color: red;">( Di isi oleh auditee )</i></label>
                                                                                         <textarea class="form-control" id="akar_penyebab" rows="3" placeholder="Apa akar penyebabnya?"></textarea>
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="rencana_perbaikan">Rencana
-                                                                                            Perbaikan</label>
+                                                                                        <label for="rencana_perbaikan">Apa Rencana
+                                                                                            Perbaikan Perbaikannya? <i style="color: red;">( Di isi oleh auditee )</i></label>
                                                                                         <textarea class="form-control" id="rencana_perbaikan" rows="3" placeholder="Apa rencana perbaikannya?"></textarea>
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="rentang_waktu_perbaikan">Rentang
-                                                                                            Waktu Perbaikan</label>
+                                                                                            Waktu Perbaikan <i style="color: red;">( Di isi oleh auditee )</i></label>
                                                                                         <input type="text" class="form-control" id="rentang_waktu_perbaikan" placeholder="Rentang waktu perbaikan">
                                                                                     </div>
 
@@ -407,13 +428,13 @@ require 'ceklogin.php';
 
                                                             }
                                                         } else {
-                                                            echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                            echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                             echo '<script>window.location.href = "auditee-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                         }
 
                                                         // $conn->close();
                                                     } else {
-                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                         echo '<script>window.location.href = "auditee-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                     } ?>
 

@@ -1,13 +1,14 @@
 <?php
 include 'koneksi.php';
 require 'ceklogin.php';
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" type="image/png/jpg" href="images/unisla.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -58,7 +59,7 @@ require 'ceklogin.php';
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading"><img src="assets/logounisla.jpg" alt="" width="60px"
+                        <div class="sb-sidenav-menu-heading"><img src="ASSETS/logounisla.png" width="60px"
                                 height="60px"></div>
 
                         <div class="sb-nav-link-icon"></div>
@@ -67,13 +68,13 @@ require 'ceklogin.php';
 
                         </a>
                         <a class="nav-link" href="dashboard-auditee.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -86,7 +87,7 @@ require 'ceklogin.php';
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -124,12 +125,11 @@ require 'ceklogin.php';
                             </nav>
                         </div>
                         <a class="nav-link" href="auditee.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
                     </div>
                 </div>
-
             </nav>
         </div>
         <div id="layoutSidenav_content">
@@ -146,7 +146,7 @@ require 'ceklogin.php';
                                     <th>Auditee / Unit</th>
                                     <th>Instrumen</th>
                                     <th>Tahun</th>
-                                    <th>Auditee</th>
+                                    <th>Auditor</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -180,12 +180,24 @@ require 'ceklogin.php';
                                                 <?php echo $row['ID_AUDITOR'] . 'Nama Tidak Tersedia'; ?>
                                             </td>
                                             <td align="center" style="width: 135px;">
-                                            <button type="button" class="btn btn-success"> <a href="auditee-tersedia.php?id=<?php echo $row['UNIT']; ?>" style=" color: white; text-decoration: none;">Mulai Audit</a></button><br>
-                                            <button type="button" class="btn btn-primary mt-2"> <a href="auditee-tersedia.php?id=<?php echo $row['UNIT']; ?>" style=" color: white; text-decoration: none;">Peta Mutu</a></button>
+                                                <a href="auditee-tersedia.php?id=<?php echo $row['UNIT']; ?>"
+                                                    class="btn btn-success">
+                                                    <i class="fas fa-play-circle"></i> Mulai Audit
+                                                </a>
+
+                                                <a href="peta-mutu.php?id=<?php echo $row['UNIT']; ?>"
+                                                    class="btn btn-primary mt-2">
+                                                    <i class="fas fa-map"></i> Peta Mutu
+                                                </a>
+
 
                                             </td>
                                             <td style="width: 60px;">
-                                            <button type="button" class="btn btn-warning"> <a href="auditor-tersedia.php?id=<?php echo $row['UNIT']; ?>" style=" color: white; text-decoration: none;">Form</a></button>
+                                                <a href="form-auditee.php?id=<?php echo $row['UNIT']; ?>"
+                                                    class="btn btn-warning">
+                                                    <i class="fas fa-file-alt"></i> Form
+                                                </a>
+
                                             </td>
                                         </tr>
                                         <?php

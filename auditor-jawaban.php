@@ -3,13 +3,13 @@
 //include 'koneksi.php';
 require 'ceklogin.php';
 ?>
-<!-- db start -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" type="image/png/jpg" href="images/unisla.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -64,16 +64,17 @@ require 'ceklogin.php';
 
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditor.php">
+                            
                             <?php echo htmlspecialchars($_SESSION['a_global']->NAMA); ?>
 
                         </a>
                         <a class="nav-link" href="dashboard-auditor.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -84,7 +85,7 @@ require 'ceklogin.php';
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -115,15 +116,14 @@ require 'ceklogin.php';
                             </nav>
                         </div>
                         <a class="nav-link" href="auditor.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
                     </div>
                 </div>
             </nav>
         </div>
-        <!-- Navbar Start -->
-
+       
         <!-- konten Start -->
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
@@ -242,26 +242,32 @@ require 'ceklogin.php';
                                                         ?>
                                                         <!-- Tambahkan tautan ini di tempat Anda ingin menampilkan navigasi -->
                                                         <tr>
-                                                            <td><?php
-                                                                $prevIndikator = $id_indikator - 1;
-                                                                if ($prevIndikator > 0) {
-                                                                    echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">Kembali</a>';
-                                                                } ?></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><?php
-                                                                // Periksa jika ada halaman berikutnya
-                                                                $nextIndikator = $id_indikator + 1;
-                                                                if ($nextIndikator <= $maxIndikator) {
-                                                                    echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya</a>';
-                                                                }
+                                                        <td>
+                                                          <?php
+                                                           $prevIndikator = $id_indikator - 1;
+                                                          if ($prevIndikator > 0) {
+                                                           echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">
+                                                          <i class="fas fa-arrow-left"></i> Kembali
+                                                          </a>';
+                                                              }
+                                                              ?>
+                                                            </td>
 
-                                                                // Periksa jika ada halaman sebelumnya
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+    <?php
+    // Periksa jika ada halaman berikutnya
+    $nextIndikator = $id_indikator + 1;
+    if ($nextIndikator <= $maxIndikator) {
+        echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya <i class="fas fa-arrow-right"></i></a>';
+    }
+    ?>
+</td>
 
-                                                                ?></td>
                                                         </tr>
 
 
@@ -390,14 +396,16 @@ require 'ceklogin.php';
 
                                                         }
                                                     } else {
-                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                        
+                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                         echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
+                                                        
                                                     }
 
                                                     // $conn->close();
                                                 } else {
                                                     // Handle ketika variabel tidak terdefinisi atau kosong
-                                                    echo '<script>alert("Silahkan Pilih Pertanyaan Lagi")</script>';
+                                                    echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                     echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                 }
                                                             ?>

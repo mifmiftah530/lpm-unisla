@@ -44,13 +44,17 @@ if ($result) {
         $_SESSION['status-login']=true;
         $_SESSION['a_global']=$d;
         // Contoh: atur sesi username
-        $_SESSION['username'] = $username;
-        $_SESSION['id'] = $d->ID_AUDITOR;
+        
 
         // Redirect ke halaman selamat datang atau halaman lain yang sesuai
         if ($user_type == 'auditor') {
+            $_SESSION['username'] = $username;
+        $_SESSION['id'] = $d->ID_AUDITOR;
             header('Location: dashboard-auditor.php');
+
         } elseif ($user_type == 'auditee') {
+            $_SESSION['username'] = $username;
+        $_SESSION['id'] = $d->ID_AUDITEE;
             header('Location: dashboard-auditee.php');
         } elseif ($user_type == 'administrator') {
             header('Location: dashboard-admin.php');

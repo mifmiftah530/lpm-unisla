@@ -27,14 +27,23 @@ $result = $koneksi->query($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radar Chart</title>
+    <link rel="shortcut icon" type="image/png/jpg" href="images/unisla.png">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>siami - unisla</title>
     <!-- Sertakan library Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+<!-- Tambahkan elemen canvas untuk menampilkan grafik -->
+<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">
+    <i class="fas fa-arrow-left me-2"></i> Kembali
+</button>
+    <div style="max-width: 600px; margin: auto;">
+        <canvas id="radarChart"></canvas>
+        
+    </div>
 
-<body>
-    <!-- Tambahkan elemen canvas untuk menampilkan grafik -->
-    <canvas id="radarChart" width="5%" height="5%">
+
         <?php
         if ($result->num_rows > 0) {
             $labels = array();
@@ -87,6 +96,7 @@ $result = $koneksi->query($query);
         }
         ?>
     </canvas>
+    
 
 </body>
 

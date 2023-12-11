@@ -1,11 +1,12 @@
 <?php
 include 'koneksi.php';
 require 'ceklogin.php';
-if ($_SESSION['status-login'] !== true) {
+if($_SESSION['status-login'] !== true){
     echo '<script>window.location="login.php"</script>';
-} else {
 }
-$query = mysqli_query($koneksi, "SELECT * FROM auditor WHERE ID_AUDITOR = '" . $_SESSION['id'] . "'");
+else{
+}
+$query = mysqli_query($koneksi, "SELECT * FROM auditee WHERE ID_AUDITEE = '" . $_SESSION['id'] . "'");
 $d = mysqli_fetch_object($query);
 ?>
 <!DOCTYPE html>
@@ -35,8 +36,7 @@ $d = mysqli_fetch_object($query);
         </a>
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -48,8 +48,7 @@ $d = mysqli_fetch_object($query);
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
                     <li>
@@ -66,66 +65,54 @@ $d = mysqli_fetch_object($query);
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">
-                            <img src="images/placeholder-profil.png" onclick="triggerClick()" id="profileDisplay"
-                                class="rounded-circle" alt="" width="60px" height="60px">
-                            <input type="file" name="profileImage" id="profileImage" onchange="displayImage(this)"
-                                style="display: none;">
+                            <img src="images/placeholder-profil.png" onclick="triggerClick()" id="profileDisplay" class="rounded-circle" alt="" width="60px" height="60px">
+                            <input type="file" name="profileImage" id="profileImage" onchange="displayImage(this)" style="display: none;">
                         </div>
 
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditor.php">
 
-                             <?=$d->NAMA?>
+                        <?=$d->NAMA?>
                         </a>
                         <a class="nav-link" href="dashboard-auditor.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Akun
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="layout-static.html">Kelola Akun</a>
                                 <a class="nav-link" href="layout-sidenav-light.html">Kelola Akun Lagi</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                     Kelola Data
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="login.html">Login</a>
                                         <a class="nav-link" href="register.html">Register</a>
                                         <a class="nav-link" href="password.html">Forgot Password</a>
                                     </nav>
                                 </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                     Kelola Data Lagi
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="401.html">401 Page</a>
                                         <a class="nav-link" href="404.html">404 Page</a>
@@ -156,30 +143,25 @@ $d = mysqli_fetch_object($query);
                             <div class="row mb-3">
                                 <label for="inputnama" class="col-sm-2 col-form-label">NAMA LENGKAP</label>
                                 <div class="col-sm-10">
-                                    <input name="nama" type="text" class="form-control" id="nama" value="<?=$d->NAMA?>"
-                                          required>
+                                    <input name="nama" type="text" class="form-control" id="nama" value="<?=$d->NAMA?>" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputtgl" class="col-sm-2 col-form-label">TANGGAL LAHIR</label>
                                 <div class="col-sm-10">
-                                    <input name="tgl" type="date" class="form-control" id="tgl"
-                                        value="<?php echo $d->TANGGAL_LAHIR; ?>">
+                                    <input name="tgl" type="date" class="form-control" id="tgl" value="<?=$d->TANGGAL_LAHIR?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputalamat" class="col-sm-2 col-form-label">ALAMAT</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="alamat" name="alamat"
-                                        
-                                        value="<?php echo $d->ALAMAT; ?>">
+                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?=$d->ALAMAT?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputuss" class="col-sm-2 col-form-label">USERNAME</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        value="<?=$d->USERNAME; ?>">
+                                    <input type="text" class="form-control" id="username" name="username" value="<?=$d->USERNAME?>">
                                 </div>
                             </div>
 
@@ -219,14 +201,12 @@ $d = mysqli_fetch_object($query);
         </div>
     </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
 <?php
@@ -236,16 +216,16 @@ if (isset($_POST['submit'])) {
     $alamat = ($_POST['alamat']);
     $username = ($_POST['username']);
 
-    $update = mysqli_query($koneksi, "UPDATE auditor SET NAMA = '" .
+    $update = mysqli_query($koneksi, "UPDATE auditee SET NAMA = '" .
     $nama . "', TANGGAL_LAHIR = 
      '" . $tgl . "',ALAMAT = '" .
      
      $alamat . "', USERNAME = '" 
-     . $username . "' WHERE ID_AUDITOR = '" . $d->ID_AUDITOR . "'");
+     . $username . "' WHERE ID_AUDITEE = '" . $d->ID_AUDITEE . "'");
 
     if ($update) {
         echo '<script>alert("Profil Berhasil Diubah")</script>';
-        echo '<script>window.location="profil-auditor.php"</script>';
+        echo '<script>window.location="profil-auditee.php"</script>';
     } else {
         echo 'gagal' . mysqli_error($koneksi);
     }
