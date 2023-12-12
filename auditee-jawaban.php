@@ -35,8 +35,7 @@ require 'ceklogin.php';
         </a>
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -48,8 +47,7 @@ require 'ceklogin.php';
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditee.php">Profil</a></li>
                     <li>
@@ -65,8 +63,7 @@ require 'ceklogin.php';
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading"><img src="ASSETS/logounisla.jpg" alt="" width="60px"
-                                height="60px"></div>
+                        <div class="sb-sidenav-menu-heading"><img src="ASSETS/logounisla.jpg" alt="" width="60px" height="60px"></div>
 
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditee.php">
@@ -78,50 +75,40 @@ require 'ceklogin.php';
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></i></div>
                             Akun
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="layout-static.html">Kelola Akun</a>
                                 <a class="nav-link" href="layout-sidenav-light.html">Kelola Akun Lagi</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                     Kelola Data
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="login.html">Login</a>
                                         <a class="nav-link" href="register.html">Register</a>
                                         <a class="nav-link" href="password.html">Forgot Password</a>
                                     </nav>
                                 </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                     Kelola Data Lagi
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="401.html">401 Page</a>
                                         <a class="nav-link" href="404.html">404 Page</a>
@@ -138,8 +125,8 @@ require 'ceklogin.php';
                 </div>
             </nav>
         </div>
-        
-        
+
+
         <!-- konten Start -->
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
@@ -262,28 +249,29 @@ require 'ceklogin.php';
                                                             <td><?php
                                                                 $prevIndikator = $id_indikator - 1;
                                                                 if ($prevIndikator > -1) {
-                                                                   echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary"> <i class="fas fa-arrow-left"></i> Sebelumnya
+                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary"> <i class="fas fa-arrow-left"></i> Sebelumnya
 </a>';
-
                                                                 } ?></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            <td><?php
+                                                            <td> <?php
+                                                                    // Periksa jika ada halaman berikutnya
+                                                                    $nextIndikator = $id_indikator + 1;
+                                                                    if ($nextIndikator <= $maxIndikator) {
+                                                                        echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya <i class="fas fa-arrow-right"></i></a>';
+                                                                    }
+                                                                    ?>
+                                                                <?php
                                                                 // Periksa jika ada halaman berikutnya
                                                                 $nextIndikator = $id_indikator + 1;
-                                                                if ($nextIndikator <= $maxIndikator) {
-                                                                    echo '<a href="auditee-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">
-                                                                    <i class="fas fa-arrow-right"></i> Selanjutnya
-                                                                </a>';
-                                                                
+                                                                if ($nextIndikator > $maxIndikator) {
+                                                                    echo '<a href="auditee-tersedia.php" class="btn btn-warning">Pilih Pertanyaan</a>';
                                                                 }
-
-                                                                // Periksa jika ada halaman sebelumnya
-
-                                                                ?></td>
+                                                                ?>
+                                                            </td>
                                                         </tr>
 
                                                         <thead>
@@ -328,17 +316,19 @@ require 'ceklogin.php';
                                                                         <select class="form-control" id="nilai" name="nilai" required>
                                                                             <option value="">--Pilih--</option>
                                                                             <?php
-                                                                            $kategori = mysqli_query($conn, "SELECT indikator.INDIKATOR, jawab.JAWAB, jawab.NILAI FROM indikator JOIN jawab ON indikator.ID_INDIKATOR = jawab.ID_INDIKATOR WHERE indikator.ID_INDIKATOR = $id_indikator AND jawab.ID_KRITERIA = $id_kriteria");
+                                                                            $kategori = mysqli_query($conn, "SELECT indikator.INDIKATOR, jawab.JAWAB, jawab.NILAI, jawab.ID_JAWAB FROM indikator JOIN jawab ON indikator.ID_INDIKATOR = jawab.ID_INDIKATOR WHERE indikator.ID_INDIKATOR = $id_indikator AND jawab.ID_KRITERIA = $id_kriteria");
                                                                             while ($z = mysqli_fetch_array($kategori)) {
                                                                             ?>
                                                                                 <option value="<?php echo $z['NILAI'] ?>">
                                                                                     <?php echo $z['NILAI'] ?>
-
-                                                                                <?php } ?>
                                                                                 </option>
+                                                                            <?php } ?>
+
                                                                         </select>
+
                                                                         <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
                                                                     </form>
+
                                                                 </td>
 
 
@@ -466,20 +456,21 @@ require 'ceklogin.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     // Check if the 'nilai' is set in the POST data
-    if (isset($_POST['nilai'])) {
-        // Get the selected nilai from the POST data
-        $selectedNilai = $_POST['nilai'];
+    // if (isset($_POST['nilai'])) {
+    // Get the selected nilai from the POST data
+    $selectedNilai = $_POST['nilai'];
+    $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
 
-        // Perform the update query here
-        // You need to replace the placeholders with the actual column names and table names from your database
-        $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$selectedNilai' WHERE ID_AUDIT = '$id_indikator'";
+    // Perform the update query here
+    // You need to replace the placeholders with the actual column names and table names from your database
+    $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$selectedNilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
 
-        // Execute the update query
-        if ($conn->query($updateQuery) === TRUE) {
-            echo '<script>alert("UBAH DATA BERHASIL")</script>';
-            echo '<script>window.location.href = "auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
-        }
+    // Execute the update query
+    if ($conn->query($updateQuery) === TRUE) {
+        echo '<script>alert("UBAH DATA BERHASIL")</script>';
+        echo '<script>window.location.href = "auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
     }
+    // }
 } ?>
 
 <?php

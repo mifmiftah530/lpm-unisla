@@ -64,7 +64,7 @@ require 'ceklogin.php';
 
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditor.php">
-                            
+
                             <?php echo htmlspecialchars($_SESSION['a_global']->NAMA); ?>
 
                         </a>
@@ -123,7 +123,7 @@ require 'ceklogin.php';
                 </div>
             </nav>
         </div>
-       
+
         <!-- konten Start -->
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
@@ -242,15 +242,15 @@ require 'ceklogin.php';
                                                         ?>
                                                         <!-- Tambahkan tautan ini di tempat Anda ingin menampilkan navigasi -->
                                                         <tr>
-                                                        <td>
-                                                          <?php
-                                                           $prevIndikator = $id_indikator - 1;
-                                                          if ($prevIndikator > 0) {
-                                                           echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">
-                                                          <i class="fas fa-arrow-left"></i> Kembali
+                                                            <td>
+                                                                <?php
+                                                                $prevIndikator = $id_indikator - 1;
+                                                                if ($prevIndikator > -1) {
+                                                                    echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($prevIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-secondary">
+                                                          <i class="fas fa-arrow-left"></i> Sebelumnya
                                                           </a>';
-                                                              }
-                                                              ?>
+                                                                }
+                                                                ?>
                                                             </td>
 
                                                             <td></td>
@@ -259,14 +259,21 @@ require 'ceklogin.php';
                                                             <td></td>
                                                             <td></td>
                                                             <td>
-    <?php
-    // Periksa jika ada halaman berikutnya
-    $nextIndikator = $id_indikator + 1;
-    if ($nextIndikator <= $maxIndikator) {
-        echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya <i class="fas fa-arrow-right"></i></a>';
-    }
-    ?>
-</td>
+                                                                <?php
+                                                                // Periksa jika ada halaman berikutnya
+                                                                $nextIndikator = $id_indikator + 1;
+                                                                if ($nextIndikator <= $maxIndikator) {
+                                                                    echo '<a href="auditor-jawaban.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-primary">Selanjutnya <i class="fas fa-arrow-right"></i></a>';
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                                // Periksa jika ada halaman berikutnya
+                                                                $nextIndikator = $id_indikator + 1;
+                                                                if ($nextIndikator > $maxIndikator) {
+                                                                    echo '<a href="auditor-tersedia.php?id_indikator=' . urlencode($nextIndikator) . '&id_kriteria=' . urlencode($id_kriteria) . '" class="btn btn-warning">Pilih Pertanyaan</a>';
+                                                                }
+                                                                ?>
+                                                            </td>
 
                                                         </tr>
 
@@ -396,10 +403,9 @@ require 'ceklogin.php';
 
                                                         }
                                                     } else {
-                                                        
+
                                                         echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                         echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
-                                                        
                                                     }
 
                                                     // $conn->close();
@@ -438,20 +444,21 @@ require 'ceklogin.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     // Check if the 'nilai' is set in the POST data
-    if (isset($_POST['nilai'])) {
-        // Get the selected nilai from the POST data
-        $selectedNilai = $_POST['nilai'];
+    // if (isset($_POST['nilai'])) {
+    // Get the selected nilai from the POST data
+    $selectedNilai = $_POST['nilai'];
+    $id_j =  $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR);
 
-        // Perform the update query here
-        // You need to replace the placeholders with the actual column names and table names from your database
-        $updateQuery = "UPDATE audit SET NILAI_AUDITOR = '$selectedNilai' WHERE ID_AUDIT = '$id_indikator'";
+    // Perform the update query here
+    // You need to replace the placeholders with the actual column names and table names from your database
+    $updateQuery = "UPDATE audit SET NILAI_AUDITOR = '$selectedNilai',ID_AUDITOR = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
 
-        // Execute the update query
-        if ($conn->query($updateQuery) === TRUE) {
-            echo '<script>alert("UBAH DATA BERHASIL")</script>';
-            echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
-        }
+    // Execute the update query
+    if ($conn->query($updateQuery) === TRUE) {
+        echo '<script>alert("UBAH DATA BERHASIL")</script>';
+        echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
     }
+    // }
 }
 ?>
 
