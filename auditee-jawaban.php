@@ -146,7 +146,7 @@ require 'ceklogin.php';
                 }
                 ?>
                 <div class="card">
-                    <h5 class="card-header bg-dark text-white">Audit Tersedia</h5>
+                    <h5 class="card-header bg-success text-white">Audit Tersedia</h5>
                     <div class="card-body">
                         <div class="container">
                             <div class="row align-items-start">
@@ -257,6 +257,7 @@ require 'ceklogin.php';
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
+                                                            <td></td>
                                                             <td> <?php
                                                                     // Periksa jika ada halaman berikutnya
                                                                     $nextIndikator = $id_indikator + 1;
@@ -282,6 +283,7 @@ require 'ceklogin.php';
                                                                 <th widht="100px">Penilaian Auditor</th>
                                                                 <th widht="100px">Penilaian Auditee</th>
                                                                 <th width="50px">Aksi</th>
+                                                                <th width="50px">Input Manual</th>
                                                                 <th width="50px">Dokumen</th>
                                                             </tr>
 
@@ -319,66 +321,91 @@ require 'ceklogin.php';
                                                                             $kategori = mysqli_query($conn, "SELECT indikator.INDIKATOR, jawab.JAWAB, jawab.NILAI, jawab.ID_JAWAB FROM indikator JOIN jawab ON indikator.ID_INDIKATOR = jawab.ID_INDIKATOR WHERE indikator.ID_INDIKATOR = $id_indikator AND jawab.ID_KRITERIA = $id_kriteria");
                                                                             while ($z = mysqli_fetch_array($kategori)) {
                                                                             ?>
-                                                                                <option value="<?php echo $z['NILAI'] ?>">
-                                                                                    <?php echo $z['NILAI'] ?>
-                                                                                </option>
+                                                                                <?php if ($z['NILAI'] == NULL) {
+                                                                                } else {
+                                                                                ?><option value="<?php echo $z['NILAI'] ?>">
+                                                                                        <?php echo $z['NILAI'] ?>
+                                                                                    </option>
+                                                                                <?php }
+                                                                                ?>
                                                                             <?php } ?>
 
                                                                         </select>
 
                                                                         <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
                                                                     </form>
-
                                                                 </td>
-
-
+                                                                <td>
+                                                                    <button style="max-width: 80px; width: 80px;" type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                                                        Input
+                                                                    </button>
+                                                                </td>
                                                                 <td style="text-align: left; vertical-align: top;">
                                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                         +
                                                                     </button>
                                                                 </td>
-                                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="exampleModalLabel">TAMBAH DATA PERBAIKAN</h5>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <form action="" method="POST">
-                                                                                <div class="modal-body">
-                                                                                    <!-- Formulir untuk pengisian data -->
-
-                                                                                    <div class="form-group">
-                                                                                        <label for="urll">Masukan URL Baru <i style="color: red;">( Di isi oleh auditee )</i></label>
-                                                                                        <input type="text" class="form-control" id="urll" name="urll" placeholder="Masukkan URL ">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label for="akar_penyebab">Akar Penyebabnya? <i style="color: red;">( Di isi oleh auditee )</i></label>
-                                                                                        <textarea class="form-control" id="akar_penyebab" rows="3" placeholder="Apa akar penyebabnya?"></textarea>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label for="rencana_perbaikan">Apa Rencana
-                                                                                            Perbaikan Perbaikannya? <i style="color: red;">( Di isi oleh auditee )</i></label>
-                                                                                        <textarea class="form-control" id="rencana_perbaikan" rows="3" placeholder="Apa rencana perbaikannya?"></textarea>
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label for="rentang_waktu_perbaikan">Rentang
-                                                                                            Waktu Perbaikan <i style="color: red;">( Di isi oleh auditee )</i></label>
-                                                                                        <input type="text" class="form-control" id="rentang_waktu_perbaikan" placeholder="Rentang waktu perbaikan">
-                                                                                    </div>
-
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-
-                                                                                    <button type="submit" class="btn btn-primary" name="simpen">Simpan</button>
-                                                                                </div>
-                                                                            </form>
+                                                            </tr>
+                                                            <!-- modal dokumen -->
+                                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">TAMBAH DATA PERBAIKAN</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
+                                                                        <form action="" method="POST">
+                                                                            <div class="modal-body">
+                                                                                <!-- Formulir untuk pengisian data -->
+
+                                                                                <div class="form-group">
+                                                                                    <label for="urll">Masukan URL Baru <i style="color: red;">( Di isi oleh auditee )</i></label>
+                                                                                    <input type="text" class="form-control" id="urll" name="urll" placeholder="Masukkan URL ">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="akar_penyebab">Akar Penyebabnya? <i style="color: red;">( Di isi oleh auditee )</i></label>
+                                                                                    <textarea class="form-control" id="akar_penyebab" rows="3" placeholder="Apa akar penyebabnya?"></textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="rencana_perbaikan">Apa Rencana
+                                                                                        Perbaikan Perbaikannya? <i style="color: red;">( Di isi oleh auditee )</i></label>
+                                                                                    <textarea class="form-control" id="rencana_perbaikan" rows="3" placeholder="Apa rencana perbaikannya?"></textarea>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="rentang_waktu_perbaikan">Rentang
+                                                                                        Waktu Perbaikan <i style="color: red;">( Di isi oleh auditee )</i></label>
+                                                                                    <input type="text" class="form-control" id="rentang_waktu_perbaikan" placeholder="Rentang waktu perbaikan">
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="modal-footer">
+
+                                                                                <button type="submit" class="btn btn-primary" name="simpen">Simpan</button>
+                                                                            </div>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
-
-                                                            </tr>
+                                                            </div>
+                                                            <!-- modal dokumen end -->
+                                                            <!-- modal nilai -->
+                                                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">INPUT MANUAL</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <form action="" method="POST">
+                                                                            <?php include 'proses.php'; ?>
+                                                                            <div class="modal-footer">
+                                                                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                                                <button type="submit" class="btn btn-primary" name="smanual">Simpan</button> -->
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- modal nilai end -->
                                                             <tr>
                                                                 <td></td>
                                                                 <td><b>NILAI</b></td>
