@@ -168,7 +168,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' ,n2 = '$input2' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -221,7 +221,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$input1' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -276,7 +276,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f87',n2='$f88' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -344,7 +344,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1='$f93' , n2='$f94', n3='$f95', n4='$f96'WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -457,7 +457,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' ,n1='$f102',n2='$f103', n3='$f107',n4='$f108' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -513,7 +513,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f114' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -570,7 +570,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f118' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -642,7 +642,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1='$f122', n2='$f123' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -712,7 +712,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f128',n2='$f129' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -812,7 +812,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
             // Melakukan query update di sini
             // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1='$f134',n2='$f135', n3='$f136', n4='$f137' WHERE ID_AUDIT = '$id_indikator'";
 
             // Eksekusi query update
             if ($conn->query($updateQuery) === TRUE) {
@@ -949,7 +949,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f144', n2 = '$f145', n3 = '$f146', n4 = '$f147', n5 = '$f148', n6 = '$f149', n7 = '$f150', n8 = '$f151', n9 = '$f152', n10 = '$f153', n11 = '$f154' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1014,7 +1014,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1= '$f161', n2 = '$f162' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1115,7 +1115,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f167', n2 = '$f168', n3 = '$f169', n4 = '$f170' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1197,7 +1197,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f177', n2 = '$f178', n3 = '$f179', n4 = '$f180', n5 = '$f181' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1265,7 +1265,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
             // Melakukan query update di sini
             // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f294', n2 = '$f295' WHERE ID_AUDIT = '$id_indikator'";
 
             // Eksekusi query update
             if ($conn->query($updateQuery) === TRUE) {
@@ -1319,7 +1319,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f356', n2 = '$f357' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1374,7 +1374,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f386', n2 = '$f387' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1423,7 +1423,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f400' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1498,7 +1498,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f404', n2 = '$f405', n3 = '$f406', n4 = '$f407' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1573,7 +1573,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f414', n2 = '$f415', n3 = '$f416', n4 = '$f417' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1626,7 +1626,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1682,7 +1682,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1738,7 +1738,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1788,7 +1788,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1843,7 +1843,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1923,7 +1923,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f444', n2 = '$f445', n3 = '$f446', n4 = '$f447' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1992,7 +1992,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f471', n2 = '$f472', n3 = '$f473', n4 = '$f474', n5 = '$f475' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -2102,7 +2102,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f454', n2 = '$f455', n3 = '$f456', n4 = '$f457', n5 = '$f458', n6 = '$f459', n7 = '$f460', n8 = '$f461', n9 = '$f462', n10 = '$f463', n11 = '$f464' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
