@@ -98,7 +98,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE  = '$id_j',n1 = '$f39' ,n2 = '$f40' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1256,8 +1256,6 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             // Tampilkan hasil
             echo "pjp: " . number_format($pjp, 2) . "<br>"; // Menampilkan dengan 2 digit desimal
             echo "Nilai: " . number_format($nilai, 2) . "<br>"; // Menampilkan dengan 2 digit desimal
-        } else {
-            echo "Mohon isi semua input.";
         }
 
 
@@ -2009,8 +2007,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
     if ($id_indikator == 61 && $id_kriteria == 7) {
 
-        ?>
-        <?php $query = "SELECT * FROM JAWAB WHERE ID_JAWAB = 1"; ?>
+        $query = "SELECT * FROM JAWAB WHERE ID_JAWAB = 1"; ?>
         <div class="modal-body">
             <form action="" method="POST">
                 <div class="form-group">
@@ -2061,8 +2058,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             </form>
         </div>
 
-    <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $f454 = isset($_POST["i1"]) ? $_POST["i1"] : 0;
             $f455 = isset($_POST["i2"]) ? $_POST["i2"] : 0;
@@ -2119,38 +2115,65 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
         }
     }
 
+    if ($id_indikator == 29 && $id_kriteria == 4) {
+
+        ?>
+        <?php $query = "SELECT * FROM JAWAB WHERE ID_JAWAB = 1"; ?>
+        <div class="modal-body">
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="urll">Jumlah mata kuliah yang dikembangkan berdasarkan hasil penelitian/PkM dalam 3 tahun terakhir (NMKI) <br><i style="color: red;">( Di isi oleh auditee )</i></label>
+                    <input type="text" class="form-control" id="i1" name="i1">
+                </div>
+                <button type="submit" name="t2" class="btn btn-success">Simpan</button>
+            </form>
+        </div>
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $input1 = isset($_POST["i1"]) ? $_POST["i1"] : 0;
+
+            // Menghitung hasil
+            // Convert Excel formula to PHP
+            if ($input1 > 3) {
+                $result = 4;
+            } elseif ($input1 == 2) {
+                $result = 3;
+            } else {
+                $result = 2;
+            }
+
+            echo $result;
+
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
+                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $n_nilai = $result;
+
+                // Melakukan query update di sini
+                // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+
+                // Eksekusi query update
+                if ($conn->query($updateQuery) === TRUE) {
+                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+                    echo '<script>window.location.href = "auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
+                } else {
+                    echo "Error updating record: " . $conn->error;
+                }
+            }
+        }
+    }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //     else {
-    //         
-    ?>
-    <!-- // <div class="modal-body">
-        // <center>
-            // <i style="color: red;">
-                // Tidak ada Inputan Manual Untuk Indikator Ini
-                // </i>
-            // </center>
-        // </div> -->
+    if ($id_kriteria == 1 || $id_indikator == 6 || $id_indikator == 8 || $id_indikator == 9 || $id_indikator == 10 || $id_indikator == 24 || $id_indikator == 25 || $id_indikator == 26 || $id_indikator == 27 || $id_indikator == 28 || $id_indikator == 30 || $id_indikator == 31 || $id_indikator == 32 || $id_indikator == 33 || $id_indikator == 34 || $id_indikator == 35 || $id_indikator == 36 || $id_indikator == 37 || $id_indikator == 39 || $id_indikator == 40 || $id_indikator == 41 || $id_indikator == 42 || $id_indikator == 43 || $id_indikator == 44 || $id_indikator == 45 || $id_indikator == 47 || $id_indikator == 48 || $id_indikator == 49 || $id_indikator == 51) {
+        ?>
+        <div class="modal-body">
+            <i>Tidak ada Input Manual Pada Indikator ini</i>
+        </div>
 <?php
-    //    }
+    }
 }
 ?>
