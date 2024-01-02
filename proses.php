@@ -1464,27 +1464,38 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $f404 = $_POST['i1'];
-            $f405 = $_POST['i2'];
-            $f406 = $_POST['i3'];
-            $f407 = $_POST['i4'];
+
+            $f404 = isset($_POST["i1"]) ? $_POST["i1"] : 0;
+            $f405 = isset($_POST["i2"]) ? $_POST["i2"] : 0;
+            $f406 = isset($_POST["i3"]) ? $_POST["i3"] : 0;
+            $f407 = isset($_POST["i4"]) ? $_POST["i4"] : 0;
             // Hitung nilai f408, f409, dan f410
             $ri = $f404 / $f407;
             $rn = $f405 / $f407;
             $rw = $f406 / $f407;
 
-            // Hitung nilai berdasarkan kondisi
-            if ($ri >= 0.1) {
+            if ($f404 > 0) {
                 $nilai = 4;
-            } elseif ($ri < 0.1 && $rn >= 1) {
-                $nilai = 3 + ($ri / 0.1);
-            } elseif (($ri > 0 && $ri < 0.1) || ($rn > 0 && $rn < 1)) {
-                $nilai = 2 + (2 * ($ri / 0.1)) + ($rn / 1) - (($ri * $rn) / (0.1 * 1));
-            } elseif ($rw >= 2) {
+            } else if ($f405 > 0) {
+                $nilai = 3;
+            } else if ($f406 > 0 && $f407 > 0) {
                 $nilai = 2;
             } else {
-                $nilai = (2 * $rw) / 2;
+                $nilai = 0;
             }
+
+            // // Hitung nilai berdasarkan kondisi
+            // if ($ri >= 0.1) {
+            //     $nilai = 4;
+            // } elseif ($ri < 0.1 && $rn >= 1) {
+            //     $nilai = 3 + ($ri / 0.1);
+            // } elseif (($ri > 0 && $ri < 0.1) || ($rn > 0 && $rn < 1)) {
+            //     $nilai = 2 + (2 * ($ri / 0.1)) + ($rn / 1) - (($ri * $rn) / (0.1 * 1));
+            // } elseif ($rw >= 2) {
+            //     $nilai = 2;
+            // } else {
+            //     $nilai = (2 * $rw) / 2;
+            // }
 
             // Tampilkan hasil
             // echo "Nilai f408: " . $ri . "<br>";
@@ -1498,7 +1509,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f404', n2 = '$f405', n3 = '$f406', n4 = '$f407' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1548,18 +1559,28 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             $f419 = $f415 / $f417;
             $f420 = $f416 / $f417;
 
-            // Hitung nilai berdasarkan kondisi
-            if ($f418 >= 0.2) {
+            if ($f414 > 0) {
                 $nilai = 4;
-            } elseif ($f418 < 0.2 && $f419 >= 2) {
-                $nilai = 3 + ($f418 / 0.2);
-            } elseif (($f418 > 0 && $f418 < 0.2) || ($f419 > 0 && $f419 < 2)) {
-                $nilai = 2 + (2 * ($f418 / 0.2)) + ($f419 / 2) - (($f418 * $f419) / (0.2 * 2));
-            } elseif ($f420 >= 4) {
+            } else if ($f415 > 0) {
+                $nilai = 3;
+            } else if ($f416 > 0 && $f417 > 0) {
                 $nilai = 2;
             } else {
-                $nilai = (2 * $f420) / 4;
+                $nilai = 0;
             }
+
+            // // Hitung nilai berdasarkan kondisi
+            // if ($f418 >= 0.2) {
+            //     $nilai = 4;
+            // } elseif ($f418 < 0.2 && $f419 >= 2) {
+            //     $nilai = 3 + ($f418 / 0.2);
+            // } elseif (($f418 > 0 && $f418 < 0.2) || ($f419 > 0 && $f419 < 2)) {
+            //     $nilai = 2 + (2 * ($f418 / 0.2)) + ($f419 / 2) - (($f418 * $f419) / (0.2 * 2));
+            // } elseif ($f420 >= 4) {
+            //     $nilai = 2;
+            // } else {
+            //     $nilai = (2 * $f420) / 4;
+            // }
 
             // Tampilkan hasil
             echo "Nilai f418: " . $f418 . "<br>";
