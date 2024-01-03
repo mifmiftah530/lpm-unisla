@@ -287,6 +287,7 @@ require 'ceklogin.php';
                                                             <th widht="100px">Penilaian Auditee</th>
                                                             <th widht="100px">Penilaian Auditor</th>
                                                             <th width="50px">Aksi</th>
+                                                            <th width="50px">Input Manual</th>
                                                             <th width="50px">Dokumen</th>
                                                         </tr>
                                                         <tr>
@@ -329,7 +330,11 @@ require 'ceklogin.php';
                                                                     <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
                                                                 </form>
                                                             </td>
-
+                                                            <td>
+                                                                    <button style="max-width: 80px; width: 80px;" type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                                                        Input
+                                                                    </button>
+                                                                </td>
 
                                                             <td style="text-align: left; vertical-align: top;">
                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -364,6 +369,23 @@ require 'ceklogin.php';
                                                             </div>
 
                                                         </tr>
+                                                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">INPUT MANUAL</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <form action="" method="POST">
+                                                                            <?php include 'proses-auditor.php'; ?>
+                                                                            <div class="modal-footer">
+                                                                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                                                <button type="submit" class="btn btn-primary" name="smanual">Simpan</button> -->
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         <tr>
                                                             <td></td>
                                                             <td><b>NILAI</b></td>

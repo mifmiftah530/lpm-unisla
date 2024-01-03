@@ -166,6 +166,7 @@ require 'ceklogin.php';
                                                                 <a href="auditee-pertanyaan.php?id=<?php echo $row['ID_KRITERIA']; ?>" style="color: white; text-decoration: none;">
                                                                     <?php echo $row['KRITERIA'] ?>
                                                                 </a></button>
+                                                                
 
                                                         </td>
                                                     </tr>
