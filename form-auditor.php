@@ -1,27 +1,6 @@
 <?php
-include 'koneksi.php';
-require 'ceklogin.php';
-
-$query = 'SELECT
-indikator.INDIKATOR,
-jawab.JAWAB,
-audit.NILAI_AUDITEE,
-SUM(audit.NILAI_AUDITOR) AS totalaudit,
-COUNT(kriteria.KRITERIA) AS jumlah_k,
-AVG(audit.NILAI_AUDITOR) AS rata_nilai,
-audit.NILAI_AUDITOR,
-kriteria.KRITERIA
-FROM 
-audit
-JOIN 
-jawab ON audit.ID_JAWAB = jawab.ID_JAWAB
-JOIN
-indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
-JOIN
-kriteria ON indikator.ID_KRITERIA = kriteria.ID_KRITERIA
-GROUP BY kriteria.ID_KRITERIA;';
-
-$result = $koneksi->query($query);
+include("koneksi.php");
+require("ceklogin.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,10 +16,6 @@ $result = $koneksi->query($query);
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Sertakan library Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Tambahkan elemen canvas untuk menampilkan grafik -->
-
 </head>
 
 <body class="sb-nav-fixed">
@@ -126,82 +101,113 @@ $result = $koneksi->query($query);
 
         </div>
         <div id="layoutSidenav_content">
-            <div class="container-fluid px-4">
-                <h4 class="mt-4">AUDIT MUTU INTERNAL</h4>
-                <div class="card">
+        <main class="container-fluid px-4">
+  <h1 class="text-center my-4">Laporan Auditor</h1>
+  <div class="row gx-4">
+    <div class="col-md-6">
+      <div class="card border-success mb-4">
+        <div class="card-header bg-success text-white">
+          <h5 class="card-title">Formulir Laporan Auditor</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Formulir</th>
+                <th scope="col">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Keberatan Standar</td>
+                <td>
+                  <a href="#" class="btn btn-primary">
+                    <i class="fas fa-print fa-fw"></i> Cetak
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Temuan AMI</td>
+                <td>
+                  <a href="#" class="btn btn-primary ">
+                    <i class="fas fa-print fa-fw"></i> Cetak
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Berita Acara</td>
+                <td>
+                  <a href="#" class="btn btn-primary ">
+                    <i class="fas fa-print fa-fw"></i> Cetak
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h6 class="card-subtitle mb-2 text-muted">Status Verifikasi:</h6>
+            <span class="badge bg-success rounded-pill">Terverifikasi</span>
+          </div>
+          <div class="alert alert-success" role="alert">
+            <i class="fas fa-check-circle"></i> Berita acara telah terverifikasi!
+          </div>
+        </div>
+      </div>
+    </div>
 
-                    <h5 class="card-header bg-success text-white">Grafik</h5>
+    <div class="col-md-6">
+      <div class="card border-success mb-4">
+        <div class="card-header bg-success text-white">
+          <h5 class="card-title">Upload Berita Acara</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-4 d-flex align-items-center">
+            <label for="fileUpload" class="form-label me-2">Upload File:</label>
+            <input type="file" class="form-control" id="fileUpload">
+            <button type="submit" class="btn btn-primary ms-2">Upload</button>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="card-subtitle mb-2 text-muted">Status Verifikasi:</h6>
+            <span class="badge bg-success rounded-pill">Terverifikasi</span>
+          </div>
+        </div>
+      </div>
 
-                    <div class="card-body">
-                        <button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">
-                            <i class="fas fa-arrow-left me-2"></i> Kembali
-                        </button>
-                        <div style="max-width: 600px; margin: auto;">
-                            <canvas id="radarChart">
-                                <?php
-                                if ($result->num_rows > 0) {
-                                    $labels = array();
-                                    $data = array();
-                                    $borderColors = array();
-
-                                    while ($row = $result->fetch_assoc()) {
-                                        $labels[] = $row["KRITERIA"];
-                                        $data[] = $row["rata_nilai"];
-                                        $borderColors[] = 'rgba(' . rand(0, 1) . ',' . rand(0, 280) . ',' . rand(0, 200) . ', 1)';
-                                    }
-                                ?>
-
-                                    <script>
-                                        // Ambil data dari PHP dan simpan dalam variabel
-                                        var labels = <?= json_encode($labels); ?>;
-                                        var data = <?= json_encode($data); ?>;
-                                        var borderColors = <?= json_encode($borderColors); ?>;
-
-                                        // Konfigurasi grafik radar
-                                        var config = {
-                                            type: 'radar',
-                                            data: {
-                                                labels: labels,
-                                                datasets: [{
-                                                    label: 'Total Nilai Audit',
-                                                    data: data,
-                                                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna area grafik
-                                                    borderColor: borderColors, // Warna garis grafik
-                                                    borderWidth: 1
-                                                }]
-                                            },
-                                            options: {
-                                                elements: {
-                                                    line: {
-                                                        tension: 0, // Tidak menggunakan ketegangan pada garis
-                                                    }
-                                                }
-                                            }
-                                        };
-
-                                        // Inisialisasi grafik radar pada elemen canvas dengan id 'radarChart'
-                                        var ctx = document.getElementById('radarChart').getContext('2d');
-                                        var myRadarChart = new Chart(ctx, config);
-                                    </script>
-                                <?php
-                                } else {
-                                    // Handle jika tidak ada data
-                                    echo 'Tidak ada data.';
-                                }
-                                ?>
-                            </canvas>
+      <div class="card border-success">
+        <div class="card-header bg-success text-white">
+          <h6 class="card-title">Verifikasi</h6>
+        </div>
+        <div class="card-body">
+          <div class="d-grid gap-2">
+            <a href="#" class="btn btn-outline-warning btn-sm text-center">
+              <i class="fas fa-check-circle"></i> Verifikasi Auditor
+            </a>
+            <a href="#" class="btn btn-outline-success btn-sm text-center" data-bs-toggle="modal" data-bs-target="#selesaiModal">
+            <i class="fas fa-check-circle"></i> Verifikasi Auditor
+            </a>
+</main>
+    </div>
+    </div>
+    <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Anak D.U.M</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+                </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
 </body>
 
