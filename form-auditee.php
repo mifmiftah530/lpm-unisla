@@ -22,16 +22,15 @@ require("ceklogin.php");
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
-        <div class="d-flex align-items-center">
-                    <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
-                    <span>Audit Mutu Internal</span>
-                </div>
+            <div class="d-flex align-items-center">
+                <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
+                <span>Audit Mutu Internal</span>
+            </div>
         </a>
 
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -43,8 +42,7 @@ require("ceklogin.php");
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
                     <li>
@@ -61,8 +59,7 @@ require("ceklogin.php");
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading p-4">
-                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80"
-                                height="80">
+                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80" height="80">
 
                         </div>
                         <div class="sb-nav-link-icon"></div>
@@ -79,14 +76,12 @@ require("ceklogin.php");
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-                            
+
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
 
@@ -120,7 +115,7 @@ require("ceklogin.php");
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Keberatan Standar</td>
+                                            <td>Tindak Koreksi</td>
                                             <td>
                                                 <a href="#" class="btn btn-primary">
                                                     <i class="fas fa-print fa-fw"></i> Cetak
@@ -162,7 +157,7 @@ require("ceklogin.php");
                                 <h5 class="card-title">Upload Berita Acara</h5>
                             </div>
                             <div class="card-body">
-                                
+
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h6 class="card-subtitle mb-2 text-muted">Status Verifikasi:</h6>
                                     <span class="badge bg-success rounded-pill">Terverifikasi</span>
@@ -179,8 +174,7 @@ require("ceklogin.php");
                                     <a href="#" class="btn btn-outline-warning btn-sm text-center">
                                         <i class="fas fa-check-circle"></i> Verifikasi Auditor
                                     </a>
-                                    <a href="#" class="btn btn-outline-success btn-sm text-center"
-                                        data-bs-toggle="modal" data-bs-target="#selesaiModal
+                                    <a href="#" class="btn btn-outline-success btn-sm text-center" data-bs-toggle="modal" data-bs-target="#selesaiModal
                                          <i class=" fas fa-check-circle"></i> Verifikasi Auditor
                                     </a>
 
@@ -198,16 +192,12 @@ require("ceklogin.php");
                                     </div>
                                 </div>
                             </footer>
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                                crossorigin="anonymous"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
                             <script src="js/scripts.js"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-                                crossorigin="anonymous"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
                             <script src="assets/demo/chart-area-demo.js"></script>
                             <script src="assets/demo/chart-bar-demo.js"></script>
-                            <script
-                                src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-                                crossorigin="anonymous"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
                             <script src="js/datatables-simple-demo.js"></script>
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 include 'koneksi.php';
 require 'ceklogin.php';
+$id = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR);
 
 $query = 'SELECT
 indikator.INDIKATOR,
@@ -19,6 +20,8 @@ JOIN
 indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
 JOIN
 kriteria ON indikator.ID_KRITERIA = kriteria.ID_KRITERIA
+WHERE 
+    audit.ID_AUDITOR = ' . $id . '
 GROUP BY kriteria.ID_KRITERIA;';
 
 $result = $koneksi->query($query);
@@ -47,16 +50,15 @@ $result = $koneksi->query($query);
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
-        <div class="d-flex align-items-center">
-                    <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
-                    <span>Audit Mutu Internal</span>
-                </div>
+            <div class="d-flex align-items-center">
+                <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
+                <span>Audit Mutu Internal</span>
+            </div>
         </a>
 
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -68,8 +70,7 @@ $result = $koneksi->query($query);
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
                     <li>
@@ -86,8 +87,7 @@ $result = $koneksi->query($query);
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading p-4">
-                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80"
-                                height="80">
+                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80" height="80">
 
                         </div>
                         <div class="sb-nav-link-icon"></div>
@@ -104,14 +104,12 @@ $result = $koneksi->query($query);
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-                            
+
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
 

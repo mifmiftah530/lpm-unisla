@@ -13,35 +13,36 @@ require 'ceklogin.php';
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Siami - Unisla</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
-    /* Set the container width for desktop */
-    @media (min-width: 992px) {
-      .desktop-container {
-        width: 960px; /* Set the desired width for desktop */
-        margin: 0 auto; /* Center the container */
-      }
-    }
-  </style>
+        /* Set the container width for desktop */
+        @media (min-width: 992px) {
+            .desktop-container {
+                width: 960px;
+                /* Set the desired width for desktop */
+                margin: 0 auto;
+                /* Center the container */
+            }
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditee.php">
-        <div class="d-flex align-items-center">
-                    <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
-                    <span>Audit Mutu Internal</span>
-                </div>
+            <div class="d-flex align-items-center">
+                <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
+                <span>Audit Mutu Internal</span>
+            </div>
         </a>
 
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -53,8 +54,7 @@ require 'ceklogin.php';
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
                     <li>
@@ -71,15 +71,17 @@ require 'ceklogin.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading p-4">
-                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80"
-                                height="80">
+                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80" height="80">
 
                         </div>
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditee.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
 
-                            <?php echo htmlspecialchars($_SESSION['a_global']->NAMA); ?>
+                            <?php echo htmlspecialchars($_SESSION['a_global']->NAMA);
+
+                            $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE)
+                            ?>
 
                         </a>
                         <div>
@@ -89,14 +91,12 @@ require 'ceklogin.php';
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-                            
+
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
 
@@ -118,29 +118,23 @@ require 'ceklogin.php';
                     <h5 class="card-header bg-success text-white">Audit Tersedia</h5>
                     <div class="card-body">
                         <table class="table table-striped">
-                        <div>
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-column-visibility">
+                            <div>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-column-visibility">
                                     Visibilitas Kolom
                                 </button>
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-print">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-print">
                                     Cetak
                                 </button>
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-pdf">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-pdf">
                                     PDF
                                 </button>
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-csv">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-csv">
                                     CSV
                                 </button>
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-excel">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-excel">
                                     Excel
                                 </button>
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#modal-copy">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal-copy">
                                     Salin
                                 </button>
 
@@ -152,17 +146,17 @@ require 'ceklogin.php';
                                     <th class="text-center">Auditee / Unit</th>
                                     <th class="text-center">Instrumen</th>
                                     <th class="text-center">Tahun</th>
-                                    <th class="text-center">Auditor</th>
+                                    <th class="text-center">Auditee</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                $kriteria = mysqli_query($koneksi, "SELECT * FROM jadwal ORDER BY ID_JADWAL DESC");
+                                $kriteria = mysqli_query($koneksi, "SELECT * FROM jadwal where id_auditee = $id");
                                 if (mysqli_num_rows($kriteria) > 0) {
                                     while ($row = mysqli_fetch_array($kriteria)) {
-                                        ?>
+                                ?>
                                         <tr>
                                             <td class="text-center align-middle">
                                                 <?php echo $no++ ?>
@@ -183,8 +177,7 @@ require 'ceklogin.php';
                                                 <?php echo $row['ID_AUDITOR'] . 'Nama Tidak Tersedia'; ?>
                                             </td>
                                             <td class="text-center align-middle">
-                                                <a href="auditee-tersedia.php?id=<?php echo $row['UNIT']; ?>"
-                                                    class="btn btn-success">
+                                                <a href="auditee-tersedia.php?id=<?php echo $row['UNIT']; ?>" class="btn btn-success">
                                                     <i class="fas fa-play"></i> Mulai Audit
                                                 </a>
 
@@ -196,21 +189,20 @@ require 'ceklogin.php';
                                             </td>
 
                                             <td class="text-center align-middle">
-                                                <a href="form-auditee.php?id=<?php echo $row['UNIT']; ?>"
-                                                    class="btn btn-warning">
+                                                <a href="form-auditee.php?id=<?php echo $row['UNIT']; ?>" class="btn btn-warning">
                                                     <i class="fas fa-file-alt"></i> Form
                                                 </a>
                                             </td>
                                         </tr>
 
-                                        <?php
+                                    <?php
                                     }
                                 } else {
                                     ?>
                                     <tr>
                                         <td colspan="3">TIDAK ADA DATA</td>
                                     </tr>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </tbody>

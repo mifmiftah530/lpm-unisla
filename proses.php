@@ -17,11 +17,10 @@ if ($conn->connect_error) {
 $id_indikator = isset($_GET['id_indikator']) ? $_GET['id_indikator'] : null;
 $id_kriteria = isset($_GET['id_kriteria']) ? $_GET['id_kriteria'] : null;
 //$id_audit = isset($_GET['id_audit']) ? $_GET['id_audit'] : null;
-
-
-
-
+$id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
 if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
+    $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+
     $sql = "SELECT
                                                 indikator.INDIKATOR,
                                                 jawab.JAWAB,
@@ -39,7 +38,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
                                                 indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
                                             WHERE 
                                                 audit.ID_AUDIT = '$id_indikator' AND
-                                                jawab.ID_KRITERIA = '$id_kriteria'";
+                                                jawab.ID_KRITERIA = '$id_kriteria' AND audit.ID_AUDITEE = '$id'";
 
 
 
@@ -63,6 +62,8 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $f39 = isset($_POST["f39"]) ? $_POST["f39"] : 0;
             $f40 = isset($_POST["f40"]) ? $_POST["f40"] : 0;
+            $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+
 
             // Fungsi untuk menghitung rasio
             function hitungRasio($f39, $f40)
@@ -98,7 +99,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE  = '$id_j',n1 = '$f39' ,n2 = '$f40' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1 = '$f39' ,n2 = '$f40' WHERE ID_AUDIT = '$id_indikator' and id_auditee = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -163,12 +164,13 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+
                 $n_nilai = $nilaiResult;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' ,n2 = '$input2' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$input1' ,n2 = '$input2' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -216,12 +218,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $result;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1='$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -271,12 +273,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t3'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f87',n2='$f88' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1='$f87',n2='$f88' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -339,12 +341,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             echo "Nilai: " . $nilai . "<br>";
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t3'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1='$f93' , n2='$f94', n3='$f95', n4='$f96'WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1='$f93' , n2='$f94', n3='$f95', n4='$f96'WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -452,12 +454,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
                 echo "Mohon isi semua input.";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilaiAkhir;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' ,n1='$f102',n2='$f103', n3='$f107',n4='$f108' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai' ,n1='$f102',n2='$f103', n3='$f107',n4='$f108' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -508,12 +510,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
                 echo "Mohon isi input F114.";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f114' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1='$f114' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -565,12 +567,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
                 echo "Mohon isi input F118.";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f118' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1='$f118' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -637,12 +639,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
                 echo "Mohon isi input F122 dan F123.";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = number_format($nilai, 2);
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1='$f122', n2='$f123' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1='$f122', n2='$f123' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -707,12 +709,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = number_format($nilai, 5);
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1='$f128',n2='$f129' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1='$f128',n2='$f129' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -807,12 +809,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t3'])) {
-            $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+            $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
             $n_nilai = $nilai;
 
             // Melakukan query update di sini
             // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1='$f134',n2='$f135', n3='$f136', n4='$f137' WHERE ID_AUDIT = '$id_indikator'";
+            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1='$f134',n2='$f135', n3='$f136', n4='$f137' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
             // Eksekusi query update
             if ($conn->query($updateQuery) === TRUE) {
@@ -944,12 +946,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             }
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t3'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f144', n2 = '$f145', n3 = '$f146', n4 = '$f147', n5 = '$f148', n6 = '$f149', n7 = '$f150', n8 = '$f151', n9 = '$f152', n10 = '$f153', n11 = '$f154' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f144', n2 = '$f145', n3 = '$f146', n4 = '$f147', n5 = '$f148', n6 = '$f149', n7 = '$f150', n8 = '$f151', n9 = '$f152', n10 = '$f153', n11 = '$f154' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1009,12 +1011,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1= '$f161', n2 = '$f162' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',n1= '$f161', n2 = '$f162' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1110,12 +1112,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f167', n2 = '$f168', n3 = '$f169', n4 = '$f170' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f167', n2 = '$f168', n3 = '$f169', n4 = '$f170' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1192,12 +1194,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t3'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f177', n2 = '$f178', n3 = '$f179', n4 = '$f180', n5 = '$f181' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f177', n2 = '$f178', n3 = '$f179', n4 = '$f180', n5 = '$f181' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1260,12 +1262,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-            $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+            $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
             $n_nilai = $nilai;
 
             // Melakukan query update di sini
             // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f294', n2 = '$f295' WHERE ID_AUDIT = '$id_indikator'";
+            $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f294', n2 = '$f295' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
             // Eksekusi query update
             if ($conn->query($updateQuery) === TRUE) {
@@ -1276,7 +1278,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             }
         }
     }
-
+    //////cek lagi//// //finsh
     if ($id_indikator == 46 && $id_kriteria == 5) {
 
         ?>
@@ -1300,13 +1302,13 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             $f356  = isset($_POST["i1"]) ? $_POST["i1"] : 0;
             $f357  = isset($_POST["i2"]) ? $_POST["i2"] : 0;
 
-            // Hitung ppdm
+            // Hitung ppdm ITU DIBAGI 100%
             $ppdm = ($f356 / $f357) * 100;
             // Hitung nilai berdasarkan kondisi
             if ($ppdm >= 25) {
                 $nilai = 4;
             } else {
-                $nilai = 2 + (8 * $ppdm);
+                $nilai = 2 + (8 * ($ppdm / 100));
             }
 
             // Tampilkan hasil
@@ -1314,12 +1316,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             // echo "Hasil perhitungan nilai: " . $nilai;
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f356', n2 = '$f357' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f356', n2 = '$f357' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1369,12 +1371,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             // echo "Hasil perhitungan nilai: " . $nilai;
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f386', n2 = '$f387' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f386', n2 = '$f387' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1418,12 +1420,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             echo "Hasil perhitungan nilai: " . $nilai;
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f400' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f400' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1435,7 +1437,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             }
         }
     }
-
+    //belum lengkap perintah insert //finsh
     if ($id_indikator == 53 && $id_kriteria == 7) {
 
         ?>
@@ -1504,12 +1506,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             // echo "Hasil perhitungan nilai: " . $nilai;
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f404', n2 = '$f405', n3 = '$f406', n4 = '$f407' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1589,12 +1591,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             echo "Hasil perhitungan nilai: " . $nilai;
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f414', n2 = '$f415', n3 = '$f416', n4 = '$f417' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f414', n2 = '$f415', n3 = '$f416', n4 = '$f417' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1642,12 +1644,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1698,12 +1700,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1754,12 +1756,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1809,7 +1811,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1859,12 +1861,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -1939,12 +1941,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             echo "Nilai rw: " . $rw . "<br>";
             echo "Nilai: " . $nilai . "<br>";
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f444', n2 = '$f445', n3 = '$f446', n4 = '$f447' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f444', n2 = '$f445', n3 = '$f446', n4 = '$f447' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -2008,12 +2010,13 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             echo "Nilai: " . $nilai . "<br>";
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f471', n2 = '$f472', n3 = '$f473', n4 = '$f474', n5 = '$f475' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f471', n2 = '$f472', n3 = '$f473', n4 = '$f474', n5 = '$f475' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
+
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -2118,12 +2121,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
             echo "Nilai: " . $nilai . "<br>";
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $nilai;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j', n1 = '$f454', n2 = '$f455', n3 = '$f456', n4 = '$f457', n5 = '$f458', n6 = '$f459', n7 = '$f460', n8 = '$f461', n9 = '$f462', n10 = '$f463', n11 = '$f464' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai', n1 = '$f454', n2 = '$f455', n3 = '$f456', n4 = '$f457', n5 = '$f458', n6 = '$f459', n7 = '$f460', n8 = '$f461', n9 = '$f462', n10 = '$f463', n11 = '$f464' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
@@ -2168,12 +2171,12 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['t2'])) {
-                $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
                 $n_nilai = $result;
 
                 // Melakukan query update di sini
                 // Gantilah placeholder dengan nama kolom dan tabel sesungguhnya dari basis data Anda
-                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai',ID_AUDITEE = '$id_j',n1 = '$input1' WHERE ID_AUDIT = '$id_indikator'";
+                $updateQuery = "UPDATE audit SET NILAI_AUDITEE = '$n_nilai' ,n1 = '$input1' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITEE = '$id'";
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {

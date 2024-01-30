@@ -1,10 +1,9 @@
 <?php
 include 'koneksi.php';
 require 'ceklogin.php';
-if($_SESSION['status-login'] !== true){
+if ($_SESSION['status-login'] !== true) {
     echo '<script>window.location="login.php"</script>';
-}
-else{
+} else {
 }
 $query = mysqli_query($koneksi, "SELECT * FROM auditee WHERE ID_AUDITEE = '" . $_SESSION['id'] . "'");
 $d = mysqli_fetch_object($query);
@@ -28,7 +27,7 @@ $d = mysqli_fetch_object($query);
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="dashboard-auditor.php">
+        <a class="navbar-brand ps-3" href="dashboard-auditee.php">
             <div class="d-flex align-items-center">
                 <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
                 <span>Audit Mutu Internal</span>
@@ -50,7 +49,7 @@ $d = mysqli_fetch_object($query);
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
+                    <li><a class="dropdown-item" href="profil-auditee.php">Profil</a></li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
@@ -70,11 +69,11 @@ $d = mysqli_fetch_object($query);
                         </div>
 
                         <div class="sb-nav-link-icon"></div>
-                        <a class="nav-link" href="profil-auditor.php">
+                        <a class="nav-link" href="profil-auditee.php">
 
-                        <?=$d->NAMA?>
+                            <?= $d->NAMA ?>
                         </a>
-                        <a class="nav-link" href="dashboard-auditor.php">
+                        <a class="nav-link" href="dashboard-auditee.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -121,7 +120,7 @@ $d = mysqli_fetch_object($query);
                                 </div>
                             </nav>
                         </div>
-                        <a class="nav-link" href="auditor.php">
+                        <a class="nav-link" href="auditee.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Audit Mutu Internal
                         </a>
@@ -143,25 +142,25 @@ $d = mysqli_fetch_object($query);
                             <div class="row mb-3">
                                 <label for="inputnama" class="col-sm-2 col-form-label">NAMA LENGKAP</label>
                                 <div class="col-sm-10">
-                                    <input name="nama" type="text" class="form-control" id="nama" value="<?=$d->NAMA?>" required>
+                                    <input name="nama" type="text" class="form-control" id="nama" value="<?= $d->NAMA ?>" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputtgl" class="col-sm-2 col-form-label">TANGGAL LAHIR</label>
                                 <div class="col-sm-10">
-                                    <input name="tgl" type="date" class="form-control" id="tgl" value="<?=$d->TANGGAL_LAHIR?>">
+                                    <input name="tgl" type="date" class="form-control" id="tgl" value="<?= $d->TANGGAL_LAHIR ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputalamat" class="col-sm-2 col-form-label">ALAMAT</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?=$d->ALAMAT?>">
+                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $d->ALAMAT ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputuss" class="col-sm-2 col-form-label">USERNAME</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="username" name="username" value="<?=$d->USERNAME?>">
+                                    <input type="text" class="form-control" id="username" name="username" value="<?= $d->USERNAME ?>">
                                 </div>
                             </div>
 
@@ -217,11 +216,11 @@ if (isset($_POST['submit'])) {
     $username = ($_POST['username']);
 
     $update = mysqli_query($koneksi, "UPDATE auditee SET NAMA = '" .
-    $nama . "', TANGGAL_LAHIR = 
+        $nama . "', TANGGAL_LAHIR = 
      '" . $tgl . "',ALAMAT = '" .
-     
-     $alamat . "', USERNAME = '" 
-     . $username . "' WHERE ID_AUDITEE = '" . $d->ID_AUDITEE . "'");
+
+        $alamat . "', USERNAME = '"
+        . $username . "' WHERE ID_AUDITEE = '" . $d->ID_AUDITEE . "'");
 
     if ($update) {
         echo '<script>alert("Profil Berhasil Diubah")</script>';

@@ -22,16 +22,15 @@ require 'ceklogin.php';
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditee.php">
-        <div class="d-flex align-items-center">
-                    <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
-                    <span>Audit Mutu Internal</span>
-                </div>
+            <div class="d-flex align-items-center">
+                <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
+                <span>Audit Mutu Internal</span>
+            </div>
         </a>
 
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -43,8 +42,7 @@ require 'ceklogin.php';
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
                     <li>
@@ -61,8 +59,7 @@ require 'ceklogin.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading p-4">
-                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80"
-                                height="80">
+                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80" height="80">
 
                         </div>
                         <div class="sb-nav-link-icon"></div>
@@ -79,14 +76,12 @@ require 'ceklogin.php';
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-                            
+
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
 
@@ -138,6 +133,8 @@ require 'ceklogin.php';
                                     $id_kriteria = isset($_GET['id_kriteria']) ? $_GET['id_kriteria'] : null;
 
                                     if ($id_indikator !== null && $id_kriteria !== null) {
+                                        $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR);
+
 
                                         if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
                                             $sql = "SELECT
@@ -158,8 +155,12 @@ require 'ceklogin.php';
                                                 indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
                                             WHERE 
                                                 audit.ID_AUDIT = '$id_indikator' AND
-                                                jawab.ID_KRITERIA = '$id_kriteria'";
+                                                jawab.ID_KRITERIA = '$id_kriteria' 
+                                                AND
+            audit.ID_AUDITOR = '$id'";
                                         } else {
+                                            $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR);
+
                                             $sql = "SELECT
                                                 indikator.INDIKATOR,
                                                 indikator.ID_INDOKATOR,
@@ -178,7 +179,7 @@ require 'ceklogin.php';
                                                 indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
                                             WHERE 
                                                 
-                                                jawab.ID_KRITERIA = '$id_kriteria'";
+                                                jawab.ID_KRITERIA = '$id_kriteria'AND audit.ID_AUDITOR = '$id'";
                                         }
 
                                         $result = $conn->query($sql);
@@ -299,20 +300,23 @@ require 'ceklogin.php';
                                                                         $kategori = mysqli_query($conn, "SELECT indikator.INDIKATOR, jawab.JAWAB, jawab.NILAI FROM indikator JOIN jawab ON indikator.ID_INDIKATOR = jawab.ID_INDIKATOR WHERE indikator.ID_INDIKATOR = $id_indikator AND jawab.ID_KRITERIA = $id_kriteria");
                                                                         while ($z = mysqli_fetch_array($kategori)) {
                                                                         ?>
-                                                                            <option value="<?php echo $z['NILAI'] ?>">
-                                                                                <?php echo $z['NILAI'] ?>
-
-                                                                            <?php } ?>
-                                                                            </option>
+                                                                            <?php if ($z['NILAI'] == NULL) {
+                                                                            } else {
+                                                                            ?><option value="<?php echo $z['NILAI'] ?>">
+                                                                                    <?php echo $z['NILAI'] ?>
+                                                                                </option>
+                                                                            <?php }
+                                                                            ?>
+                                                                        <?php } ?>
                                                                     </select>
                                                                     <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
                                                                 </form>
                                                             </td>
                                                             <td>
-                                                                    <button style="max-width: 80px; width: 80px;" type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                                                        Input
-                                                                    </button>
-                                                                </td>
+                                                                <button style="max-width: 80px; width: 80px;" type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                                                    Input
+                                                                </button>
+                                                            </td>
 
                                                             <td style="text-align: left; vertical-align: top;">
                                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -348,22 +352,22 @@ require 'ceklogin.php';
 
                                                         </tr>
                                                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">INPUT MANUAL</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <form action="" method="POST">
-                                                                            <?php include 'proses-auditor.php'; ?>
-                                                                            <div class="modal-footer">
-                                                                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                                                <button type="submit" class="btn btn-primary" name="smanual">Simpan</button> -->
-                                                                            </div>
-                                                                        </form>
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">INPUT MANUAL</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
+                                                                    <form action="" method="POST">
+                                                                        <?php include 'proses-auditor.php'; ?>
+                                                                        <div class="modal-footer">
+                                                                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                                                <button type="submit" class="btn btn-primary" name="smanual">Simpan</button> -->
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                         <tr>
                                                             <td></td>
                                                             <td><b>NILAI</b></td>
@@ -447,11 +451,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     // if (isset($_POST['nilai'])) {
     // Get the selected nilai from the POST data
     $selectedNilai = $_POST['nilai'];
-    $id_j =  $id_j = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR);
+    $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR);
 
     // Perform the update query here
+    $updateQuery = "UPDATE audit SET NILAI_AUDITOR = '$selectedNilai' WHERE ID_AUDIT = '$id_indikator' AND ID_AUDITOR = '$id'";
     // You need to replace the placeholders with the actual column names and table names from your database
-    $updateQuery = "UPDATE audit SET NILAI_AUDITOR = '$selectedNilai',ID_AUDITOR = '$id_j' WHERE ID_AUDIT = '$id_indikator'";
 
     // Execute the update query
     if ($conn->query($updateQuery) === TRUE) {

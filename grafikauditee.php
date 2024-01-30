@@ -1,25 +1,29 @@
 <?php
 include 'koneksi.php';
 require 'ceklogin.php';
-
+$id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
 $query = 'SELECT
-indikator.INDIKATOR,
-jawab.JAWAB,
-audit.NILAI_AUDITEE,
-SUM(audit.NILAI_AUDITEE) AS totalaudit,
-COUNT(kriteria.KRITERIA) AS jumlah_k,
-AVG(audit.NILAI_AUDITEE) AS rata_nilai,
-audit.NILAI_AUDITOR,
-kriteria.KRITERIA
+    indikator.INDIKATOR,
+    jawab.JAWAB,
+    audit.NILAI_AUDITEE,
+    SUM(audit.NILAI_AUDITEE) AS totalaudit,
+    COUNT(kriteria.KRITERIA) AS jumlah_k,
+    AVG(audit.NILAI_AUDITEE) AS rata_nilai,
+    audit.NILAI_AUDITOR,
+    kriteria.KRITERIA
 FROM 
-audit
+    audit
 JOIN 
-jawab ON audit.ID_JAWAB = jawab.ID_JAWAB
+    jawab ON audit.ID_JAWAB = jawab.ID_JAWAB
 JOIN
-indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
+    indikator ON jawab.ID_INDIKATOR = indikator.ID_INDIKATOR
 JOIN
-kriteria ON indikator.ID_KRITERIA = kriteria.ID_KRITERIA
-GROUP BY kriteria.ID_KRITERIA;';
+    kriteria ON indikator.ID_KRITERIA = kriteria.ID_KRITERIA
+WHERE 
+    audit.ID_AUDITEE = ' . $id . '
+GROUP BY 
+    kriteria.ID_KRITERIA';
+
 
 $result = $koneksi->query($query);
 ?>
@@ -40,6 +44,13 @@ $result = $koneksi->query($query);
     <!-- Sertakan library Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Tambahkan elemen canvas untuk menampilkan grafik -->
+    <!-- ... other head elements ... -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.4/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.0.3/mammoth.browser.min.js"></script>
+    <!-- ... other head elements ... -->
 
 </head>
 
@@ -47,16 +58,15 @@ $result = $koneksi->query($query);
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
-        <div class="d-flex align-items-center">
-                    <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
-                    <span>Audit Mutu Internal</span>
-                </div>
+            <div class="d-flex align-items-center">
+                <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
+                <span>Audit Mutu Internal</span>
+            </div>
         </a>
 
 
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <!--<div class="input-group">
@@ -68,8 +78,7 @@ $result = $koneksi->query($query);
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/PIC1.png" alt="" width="25px" height="25px"></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="profil-auditor.php">Profil</a></li>
                     <li>
@@ -86,8 +95,7 @@ $result = $koneksi->query($query);
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading p-4">
-                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80"
-                                height="80">
+                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80" height="80">
 
                         </div>
                         <div class="sb-nav-link-icon"></div>
@@ -104,14 +112,12 @@ $result = $koneksi->query($query);
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-                            
+
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
                             Data
 
@@ -134,9 +140,15 @@ $result = $koneksi->query($query);
                     <h5 class="card-header bg-success text-white">Grafik</h5>
 
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">
-                            <i class="fas fa-arrow-left me-2"></i> Kembali
-                        </button>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">
+                                <i class="fas fa-arrow-left me-2"></i> Kembali
+                            </button>
+                            <!-- <button class="btn btn-success" onclick="exportToPDF()">Export to PDF</button>
+                            <button class="btn btn-info" onclick="exportToExcel()">Export to Excel</button>
+                            <button class="btn btn-warning" onclick="exportToWord()">Export to Word</button> -->
+                            <button class="btn btn-secondary" onclick="printChart()">Print</button>
+                        </div>
                         <div style="max-width: 600px; margin: auto;">
                             <canvas id="radarChart">
                                 <?php
@@ -193,9 +205,91 @@ $result = $koneksi->query($query);
                             </canvas>
                         </div>
                     </div>
+                    <script>
+                        var labels = <?= json_encode($labels); ?>;
+                        var data = <?= json_encode($data); ?>;
+                        var borderColors = <?= json_encode($borderColors); ?>;
+
+                        var config = {
+                            type: 'radar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Total Nilai Audit',
+                                    data: data,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: borderColors,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                elements: {
+                                    line: {
+                                        tension: 0,
+                                    }
+                                },
+                                plugins: {
+                                    datalabels: {
+                                        display: true,
+                                        color: 'black',
+                                        font: {
+                                            weight: 'bold'
+                                        },
+                                        formatter: function(value, context) {
+                                            return value;
+                                        }
+                                    }
+                                }
+                            }
+                        };
+
+                        var ctx = document.getElementById('radarChart').getContext('2d');
+                        var myRadarChart = new Chart(ctx, config);
+
+                        function exportToPDF() {
+                            var element = document.getElementById('radarChart');
+                            html2pdf(element);
+                        }
+
+                        function exportToExcel() {
+                            var element = document.getElementById('radarChart');
+                            var chartData = element.toDataURL('image/jpeg');
+                            var worksheet = XLSX.utils.json_to_sheet([{
+                                "chart": chartData
+                            }], {
+                                skipHeader: true
+                            });
+                            var workbook = XLSX.utils.book_new();
+                            XLSX.utils.book_append_sheet(workbook, worksheet, 'chart');
+                            XLSX.writeFile(workbook, 'chart.xlsx');
+                        }
+
+                        function exportToWord() {
+                            var element = document.getElementById('radarChart');
+                            var chartData = element.toDataURL('image/jpeg');
+                            var html = '<img src="' + chartData + '">';
+                            mammoth.extractRawText({
+                                    html: html
+                                })
+                                .then(function(result) {
+                                    var blob = new Blob([result.value], {
+                                        type: "application/msword"
+                                    });
+                                    var link = document.createElement('a');
+                                    link.href = window.URL.createObjectURL(blob);
+                                    link.download = 'chart.doc';
+                                    link.click();
+                                });
+                        }
+
+                        function printChart() {
+                            window.print();
+                        }
+                    </script>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
