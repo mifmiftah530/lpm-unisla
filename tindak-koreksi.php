@@ -1,6 +1,6 @@
 <?php
-include("koneksi.php");
-require("ceklogin.php");
+include 'koneksi.php';
+require 'ceklogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,17 @@ require("ceklogin.php");
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        /* Set the container width for desktop */
+        @media (min-width: 992px) {
+            .desktop-container {
+                width: 960px;
+                /* Set the desired width for desktop */
+                margin: 0 auto;
+                /* Center the container */
+            }
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -69,96 +80,86 @@ require("ceklogin.php");
                         <a class="nav-link" href="profil-auditee.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
 
-                            <?php echo htmlspecialchars($_SESSION['a_global']->NAMA); ?>
+                            <?php echo htmlspecialchars($_SESSION['a_global']->NAMA);
+                            $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITOR) ?>
 
                         </a>
                         <div>
-                            <a class="nav-link" href="dashboard-auditee.php">
+                            <a class="nav-link" href="dashboard-auditor.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                                 Dashboard
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link" href="profil-auditee.php">
+                        <a class="nav-link" href="profil-auditor.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
-                            Data
 
-                        </a>
-                        <a class="nav-link" href="auditee.php">
+                        <a class="nav-link" href="auditor.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
+                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Data
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" href="catatan-lapangan.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Catatan Lapangan
+                                </a>
+                                <a class="nav-link" href="tindak-koreksi.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Tindak Koreksi & RTL
+                                </a>
+                        </div>
                     </div>
-                </div>
             </nav>
-
         </div>
-
         <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Lembaga Pengembangan Pendidikan dan Penjaminan Mutu</li>
-                    </ol>
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4 rounded-3 shadow">
-                                <div class="card-body">Audit Tersedia</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4 rounded-3 shadow">
-                                <div class="card-body">Data Tersedia</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card rounded-3 shadow-lg">
-                        <h5 class="card-header bg-success text-white">Sistem Informasi Audit Mutu Internal</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Selamat Datang <span class="nama-user" style="color: #66cdaa;">
-                                    <?php echo htmlspecialchars($_SESSION['a_global']->NAMA); ?>
-                                </span></h5>
-                            <p class="card-text">Di Lembaga Pengembangan Pendidikan dan Penjaminan Mutu</p>
-                        </div>
-                    </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; D.U.M</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
+    <div class="container-fluid px-4">
+        <h4 class="mt-4">AUDIT MUTU INTERNAL</h4>
+        <div class="card shadow">
+            <h5 class="card-header bg-success text-white">Tindak Koreksi & RTL</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">NO</th>
+                                <th style="width: 25%;">INDIKATOR</th>
+                                <th style="width: 20%;">TEMUAN</th>
+                                <th style="width: 10%;">KTS/OB</th>
+                                <th style="width: 25%;">AKAR PERMASALAHAN</th>
+                                <th style="width: 25%;">REKOMENDASI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data tabel ditempatkan di sini -->
+                        </tbody>
+                    </table>
                 </div>
-            </footer>
+            </div>
         </div>
     </div>
+</div>
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
-</body>
+    <script src="js/scripts.js"></script>
+    <!-- ... Script lainnya ... -->
 
-</html>
+    <script>

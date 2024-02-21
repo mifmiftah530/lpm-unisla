@@ -19,7 +19,7 @@ require 'ceklogin.php';
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditee.php">
         <div class="d-flex align-items-center">
@@ -79,23 +79,32 @@ require 'ceklogin.php';
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link" href="profil-auditor.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-                            
-                        </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
-                            Data
-
                         </a>
                         <a class="nav-link" href="auditor.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
-                    </div>
+                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Data
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" href="catatan-lapangan.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Catatan Lapangan
+                                </a>
+                                <a class="nav-link" href="tindak-koreksi.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Tindak Koreksi & RTL
+                                </a>
+                        </div>
                 </div>
             </nav>
 
@@ -104,30 +113,27 @@ require 'ceklogin.php';
 
 
         <!-- konten Start -->
-        <div id="layoutSidenav_content">
-            <div class="container-fluid px-4">
-                <h4 class="mt-4">AUDIT MUTU INTERNAL</h4>
-                <div class="card">
-                    <h5 class="card-header bg-success text-white">Audit Tersedia</h5>
-                    <div class="card-body">
-                        <div class="container">
-                            <div class="row align-items-start">
-                                <div class="col-4">
-                                    <h4 class="mb-0">Standar</h4> <br>
-                                    <a href="auditor.php" class="btn btn-primary"> <i class="fas fa-arrow-left"></i>
-                                        Kembali</a>
-
-                                    <!-- <a href="grafikauditor.php" class="btn btn-warning"><i class="fas fa-chart-bar"></i> Grafik</a> -->
-
-                                    <!-- Bagian Tabel Standar -->
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th width="50px">NO</th>
-                                                <th>KRITERIA</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+       <div id="layoutSidenav_content">
+    <div class="container-fluid px-4">
+        <h4 class="mt-4">AUDIT MUTU INTERNAL</h4>
+        <div class="card shadow">
+            <h5 class="card-header bg-success text-white">Audit Tersedia</h5>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col-md-4">
+                            <h4 class="mb-3">Standar</h4>
+                            <a href="auditor.php" class="btn btn-primary mb-3">
+                                <i class="fas fa-arrow-left me-2"></i>Kembali
+                            </a>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="50px">NO</th>
+                                        <th>KRITERIA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                             <?php
                                             $no = 1;
                                             // $id = $_GET['id'];

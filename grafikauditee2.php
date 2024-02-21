@@ -43,7 +43,7 @@ $result = $koneksi->query($query);
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.html">
             <div class="d-flex align-items-center">

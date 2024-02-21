@@ -8,6 +8,7 @@ if ($_SESSION['status-login'] !== true) {
 $query = mysqli_query($koneksi, "SELECT * FROM auditor WHERE ID_AUDITOR = '" . $_SESSION['id'] . "'");
 $d = mysqli_fetch_object($query);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,14 +26,15 @@ $d = mysqli_fetch_object($query);
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="dashboard-auditor.php">
+        <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
             <div class="d-flex align-items-center">
                 <img src="ASSETS/logounisla.png" alt="" width="25px" height="25px" class="me-2">
                 <span>Audit Mutu Internal</span>
             </div>
         </a>
+
 
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
@@ -62,41 +64,38 @@ $d = mysqli_fetch_object($query);
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-dark bg-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">
-                            <img src="images/placeholder-profil.png" onclick="triggerClick()" id="profileDisplay"
-                                class="rounded-circle" alt="" width="60px" height="60px">
-                            <input type="file" name="profileImage" id="profileImage" onchange="displayImage(this)"
-                                style="display: none;">
-                        </div>
+                        <div class="sb-sidenav-menu-heading p-4">
+                            <img src="ASSETS/logounisla.jpg" alt="Unisla" class="rounded-circle me-3" width="80"
+                                height="80">
 
+                        </div>
                         <div class="sb-nav-link-icon"></div>
                         <a class="nav-link" href="profil-auditor.php">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-circle-user"></i></div>
 
-                             <?=$d->NAMA?>
+                            <?php echo htmlspecialchars($_SESSION['a_global']->NAMA); ?>
+
                         </a>
-                        <a class="nav-link" href="dashboard-auditor.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Akun
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Kelola Akun</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Kelola Akun Lagi</a>
-                            </nav>
+                        <div>
+                            <a class="nav-link" href="dashboard-auditor.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                                Dashboard
+                            </a>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <div class="sb-sidenav-menu-heading mt-4">Menu</div>
+                        <a class="nav-link" href="profil-auditor.php">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                            Akun
+                        </a>
+                        <a class="nav-link" href="auditor.php">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
+                            Audit Mutu Internal
+                        </a>
+                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -104,44 +103,18 @@ $d = mysqli_fetch_object($query);
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Kelola Data
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                <a class="nav-link" href="catatan-lapangan.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Catatan Lapangan
                                 </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">
-                                    Kelola Data Lagi
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                <a class="nav-link" href="tindak-koreksi.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Tindak Koreksi & RTL
                                 </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
                         </div>
-                        <a class="nav-link" href="auditor.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Audit Mutu Internal
-                        </a>
                     </div>
-                </div>
-
             </nav>
+
         </div>
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
@@ -156,8 +129,8 @@ $d = mysqli_fetch_object($query);
                             <div class="row mb-3">
                                 <label for="inputnama" class="col-sm-2 col-form-label">NAMA LENGKAP</label>
                                 <div class="col-sm-10">
-                                    <input name="nama" type="text" class="form-control" id="nama" value="<?=$d->NAMA?>"
-                                          required>
+                                    <input name="nama" type="text" class="form-control" id="nama" value="<?= $d->NAMA ?>"
+                                        required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -171,7 +144,6 @@ $d = mysqli_fetch_object($query);
                                 <label for="inputalamat" class="col-sm-2 col-form-label">ALAMAT</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="alamat" name="alamat"
-                                        
                                         value="<?php echo $d->ALAMAT; ?>">
                                 </div>
                             </div>
@@ -179,15 +151,11 @@ $d = mysqli_fetch_object($query);
                                 <label for="inputuss" class="col-sm-2 col-form-label">USERNAME</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="username" name="username"
-                                        value="<?=$d->USERNAME; ?>">
+                                        value="<?= $d->USERNAME; ?>">
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">FOTO PROFIL</label>
-                                <input type="file" class="form-control" name="foto" name="foto">
 
-                            </div>
 
                             <button type="submit" name="submit" class="btn btn-primary">Update</button>
 
@@ -237,11 +205,11 @@ if (isset($_POST['submit'])) {
     $username = ($_POST['username']);
 
     $update = mysqli_query($koneksi, "UPDATE auditor SET NAMA = '" .
-    $nama . "', TANGGAL_LAHIR = 
+        $nama . "', TANGGAL_LAHIR = 
      '" . $tgl . "',ALAMAT = '" .
-     
-     $alamat . "', USERNAME = '" 
-     . $username . "' WHERE ID_AUDITOR = '" . $d->ID_AUDITOR . "'");
+
+        $alamat . "', USERNAME = '"
+        . $username . "' WHERE ID_AUDITOR = '" . $d->ID_AUDITOR . "'");
 
     if ($update) {
         echo '<script>alert("Profil Berhasil Diubah")</script>';

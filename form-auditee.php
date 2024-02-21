@@ -19,7 +19,7 @@ require("ceklogin.php");
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
             <div class="d-flex align-items-center">

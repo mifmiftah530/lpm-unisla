@@ -19,7 +19,7 @@ require 'ceklogin.php';
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditee.php">
             <div class="d-flex align-items-center">
@@ -76,20 +76,32 @@ require 'ceklogin.php';
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link" href="profil-auditor.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-
-                        </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
-                            Data
-
                         </a>
                         <a class="nav-link" href="auditor.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
+                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse"
+                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Data
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" href="catatan-lapangan.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Catatan Lapangan
+                                </a>
+                                <a class="nav-link" href="tindak-koreksi.php">
+                                    <div class="sb-nav-link-icon"></div>
+                                    Tindak Koreksi & RTL
+                                </a>
+
                     </div>
                 </div>
             </nav>
@@ -312,8 +324,9 @@ require 'ceklogin.php';
                                                                     <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
                                                                 </form>
                                                             </td>
-                                                            <td>
-                                                                <button style="max-width: 80px; width: 80px;" type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                                            
+                                                                <td style="text-align: left; vertical-align: top;">
+                                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                                                                     Input
                                                                 </button>
                                                             </td>

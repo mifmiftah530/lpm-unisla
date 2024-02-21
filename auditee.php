@@ -31,7 +31,7 @@ require 'ceklogin.php';
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditee.php">
             <div class="d-flex align-items-center">
@@ -91,10 +91,9 @@ require 'ceklogin.php';
                             </a>
                         </div>
                         <div class="sb-sidenav-menu-heading mt-4">Menu</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link" href="profil-auditee.php">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             Akun
-
                         </a>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-lines"></i></div>
