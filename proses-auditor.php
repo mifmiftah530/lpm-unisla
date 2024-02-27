@@ -102,7 +102,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -172,7 +172,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -225,7 +225,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -280,7 +280,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -348,7 +348,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -461,7 +461,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -517,7 +517,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -574,7 +574,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -646,7 +646,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -716,7 +716,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -816,7 +816,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
             // Eksekusi query update
             if ($conn->query($updateQuery) === TRUE) {
-                echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                 echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
             } else {
                 echo "Error updating record: " . $conn->error;
@@ -953,7 +953,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1018,7 +1018,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1119,7 +1119,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1201,7 +1201,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1269,7 +1269,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
             // Eksekusi query update
             if ($conn->query($updateQuery) === TRUE) {
-                echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                 echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
             } else {
                 echo "Error updating record: " . $conn->error;
@@ -1324,7 +1324,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1379,7 +1379,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1428,7 +1428,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1514,7 +1514,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1599,7 +1599,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1652,7 +1652,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1708,7 +1708,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1764,7 +1764,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1814,7 +1814,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1869,7 +1869,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -1949,7 +1949,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -2018,7 +2018,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -2128,7 +2128,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;
@@ -2178,7 +2178,7 @@ if ($query = "SELECT * FROM jawab WHERE ID_JAWAB IS NULL") {
 
                 // Eksekusi query update
                 if ($conn->query($updateQuery) === TRUE) {
-                    echo '<script>alert("UBAH DATA BERHASIL")</script>';
+
                     echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
                 } else {
                     echo "Error updating record: " . $conn->error;

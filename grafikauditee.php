@@ -55,7 +55,7 @@ $result = $koneksi->query($query);
 </head>
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
             <div class="d-flex align-items-center">
@@ -144,12 +144,9 @@ $result = $koneksi->query($query);
                             <button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">
                                 <i class="fas fa-arrow-left me-2"></i> Kembali
                             </button>
-                            <!-- <button class="btn btn-success" onclick="exportToPDF()">Export to PDF</button>
-                            <button class="btn btn-info" onclick="exportToExcel()">Export to Excel</button>
-                            <button class="btn btn-warning" onclick="exportToWord()">Export to Word</button> -->
-                            <button class="btn btn-secondary" onclick="printChart()">Print</button>
+
                         </div>
-                        <div style="max-width: 600px; margin: auto;">
+                        <div style="max-width: 100%; margin: auto;">
                             <canvas id="radarChart">
                                 <?php
                                 if ($result->num_rows > 0) {
@@ -188,6 +185,19 @@ $result = $koneksi->query($query);
                                                     line: {
                                                         tension: 0, // Tidak menggunakan ketegangan pada garis
                                                     }
+                                                },
+                                                scales: {
+                                                    r: {
+                                                        min: 1, // Nilai minimum pada sumbu radial
+                                                        max: 4, // Nilai maksimum pada sumbu radial
+                                                        stepSize: 1, // Jarak antara nilai-nilai yang ditampilkan pada sumbu radial
+                                                        pointLabels: {
+                                                            font: {
+                                                                size: 16 // Sesuaikan dengan ukuran font yang diinginkan
+                                                            }
+                                                        }
+
+                                                    }
                                                 }
                                             }
                                         };
@@ -205,87 +215,7 @@ $result = $koneksi->query($query);
                             </canvas>
                         </div>
                     </div>
-                    <script>
-                        var labels = <?= json_encode($labels); ?>;
-                        var data = <?= json_encode($data); ?>;
-                        var borderColors = <?= json_encode($borderColors); ?>;
 
-                        var config = {
-                            type: 'radar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Total Nilai Audit',
-                                    data: data,
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    borderColor: borderColors,
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                elements: {
-                                    line: {
-                                        tension: 0,
-                                    }
-                                },
-                                plugins: {
-                                    datalabels: {
-                                        display: true,
-                                        color: 'black',
-                                        font: {
-                                            weight: 'bold'
-                                        },
-                                        formatter: function(value, context) {
-                                            return value;
-                                        }
-                                    }
-                                }
-                            }
-                        };
-
-                        var ctx = document.getElementById('radarChart').getContext('2d');
-                        var myRadarChart = new Chart(ctx, config);
-
-                        function exportToPDF() {
-                            var element = document.getElementById('radarChart');
-                            html2pdf(element);
-                        }
-
-                        function exportToExcel() {
-                            var element = document.getElementById('radarChart');
-                            var chartData = element.toDataURL('image/jpeg');
-                            var worksheet = XLSX.utils.json_to_sheet([{
-                                "chart": chartData
-                            }], {
-                                skipHeader: true
-                            });
-                            var workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(workbook, worksheet, 'chart');
-                            XLSX.writeFile(workbook, 'chart.xlsx');
-                        }
-
-                        function exportToWord() {
-                            var element = document.getElementById('radarChart');
-                            var chartData = element.toDataURL('image/jpeg');
-                            var html = '<img src="' + chartData + '">';
-                            mammoth.extractRawText({
-                                    html: html
-                                })
-                                .then(function(result) {
-                                    var blob = new Blob([result.value], {
-                                        type: "application/msword"
-                                    });
-                                    var link = document.createElement('a');
-                                    link.href = window.URL.createObjectURL(blob);
-                                    link.download = 'chart.doc';
-                                    link.click();
-                                });
-                        }
-
-                        function printChart() {
-                            window.print();
-                        }
-                    </script>
                 </div>
             </div>
         </div>

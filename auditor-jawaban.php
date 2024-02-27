@@ -19,7 +19,7 @@ require 'ceklogin.php';
 </head>
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditee.php">
             <div class="d-flex align-items-center">
@@ -84,14 +84,12 @@ require 'ceklogin.php';
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-file-signature"></i></div>
                             Audit Mutu Internal
                         </a>
-                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse"
-                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" href="catatan-lapangan.php">
                                     <div class="sb-nav-link-icon"></div>
@@ -102,8 +100,8 @@ require 'ceklogin.php';
                                     Tindak Koreksi & RTL
                                 </a>
 
+                        </div>
                     </div>
-                </div>
             </nav>
 
         </div>
@@ -134,11 +132,6 @@ require 'ceklogin.php';
                             <div class="row align-items-start">
                                 <div class="col-12">
                                     <h4>Indikator</h4>
-
-
-
-
-
                                     <?php
                                     // Ambil nilai id_kriteria dan id_indikator dari URL
                                     $id_indikator = isset($_GET['id_indikator']) ? $_GET['id_indikator'] : null;
@@ -324,8 +317,8 @@ require 'ceklogin.php';
                                                                     <button type="submit" class="btn btn-primary" name="submit" style="margin-top: 10px;">Simpan</button>
                                                                 </form>
                                                             </td>
-                                                            
-                                                                <td style="text-align: left; vertical-align: top;">
+
+                                                            <td style="text-align: left; vertical-align: top;">
                                                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                                                                     Input
                                                                 </button>
@@ -421,14 +414,12 @@ require 'ceklogin.php';
                                                         }
                                                     } else {
 
-                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                         echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                     }
 
                                                     // $conn->close();
                                                 } else {
                                                     // Handle ketika variabel tidak terdefinisi atau kosong
-                                                    echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
                                                     echo '<script>window.location.href = "auditor-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                 }
                                                             ?>
@@ -472,7 +463,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
     // Execute the update query
     if ($conn->query($updateQuery) === TRUE) {
-        echo '<script>alert("UBAH DATA BERHASIL")</script>';
         echo '<script>window.location.href = "auditor-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
     }
     // }

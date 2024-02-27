@@ -22,4 +22,3 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 
 // Perbarui waktu aktivitas terakhir
 $_SESSION['last_activity'] = time();
-?>

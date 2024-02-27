@@ -47,7 +47,7 @@ $result = $koneksi->query($query);
 </head>
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
             <div class="d-flex align-items-center">
@@ -113,14 +113,12 @@ $result = $koneksi->query($query);
                             Audit Mutu Internal
                         </a>
 
-                     <a class="nav-link collapsed" href="data" data-bs-toggle="collapse"
-                            data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="data" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Data
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" href="catatan-lapangan.php">
                                     <div class="sb-nav-link-icon"></div>
@@ -131,7 +129,7 @@ $result = $koneksi->query($query);
                                     Tindak Koreksi & RTL
                                 </a>
                         </div>
-                </div>
+                    </div>
             </nav>
 
         </div>
@@ -146,7 +144,7 @@ $result = $koneksi->query($query);
                         <button type="button" class="btn btn-primary" onclick="javascript:history.go(-1);">
                             <i class="fas fa-arrow-left me-2"></i> Kembali
                         </button>
-                        <div style="max-width: 600px; margin: auto;">
+                        <div style="max-width: 100%; margin: auto;">
                             <canvas id="radarChart">
                                 <?php
                                 if ($result->num_rows > 0) {
@@ -185,12 +183,27 @@ $result = $koneksi->query($query);
                                                     line: {
                                                         tension: 0, // Tidak menggunakan ketegangan pada garis
                                                     }
+                                                },
+                                                scales: {
+                                                    r: {
+                                                        min: 1, // Nilai minimum pada sumbu radial
+                                                        max: 4, // Nilai maksimum pada sumbu radial
+                                                        stepSize: 1, // Jarak antara nilai-nilai yang ditampilkan pada sumbu radial
+                                                        pointLabels: {
+                                                            font: {
+                                                                size: 16 // Sesuaikan dengan ukuran font yang diinginkan
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         };
 
                                         // Inisialisasi grafik radar pada elemen canvas dengan id 'radarChart'
                                         var ctx = document.getElementById('radarChart').getContext('2d');
+                                        ctx.canvas.width = 800;
+                                        ctx.canvas.height = 600;
+
                                         var myRadarChart = new Chart(ctx, config);
                                     </script>
                                 <?php

@@ -25,7 +25,7 @@ require 'ceklogin.php';
 
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
             <div class="d-flex align-items-center">
@@ -424,13 +424,13 @@ require 'ceklogin.php';
 
                                                             }
                                                         } else {
-                                                            echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
+
                                                             echo '<script>window.location.href = "auditee-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                         }
 
                                                         // $conn->close();
                                                     } else {
-                                                        echo '<script>alert("Silahkan Pilih Pertanyaan Lagi \u{1F6A8}")</script>';
+
                                                         echo '<script>window.location.href = "auditee-pertanyaan.php?id=' . urlencode($id_kriteria) . '";</script>';
                                                     } ?>
 
@@ -466,7 +466,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
     // Execute the update query
     if ($conn->query($updateQuery) === TRUE) {
-        echo '<script>alert("UBAH DATA BERHASIL")</script>';
         echo '<script>window.location.href = "auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
     }
     // }
@@ -489,7 +488,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['simpen'])) {
 
         // Execute the update query
         if ($conn->query($updateQuery1) === TRUE) {
-            echo '<script>alert("UBAH DATA BERHASIL")</script>';
             echo '<script>window.location.href = "auditee-jawaban.php?id_kriteria=' . urlencode($id_kriteria) . '&id_indikator=' . urlencode($id_indikator) . '";</script>';
         }
     }

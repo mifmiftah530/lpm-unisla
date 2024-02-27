@@ -118,28 +118,11 @@ require 'ceklogin.php';
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
                 <h4 class="mt-4">AUDIT MUTU INTERNAL</h4>
+
                 <div class="card shadow">
                     <h5 class="card-header bg-success text-white">Catatan Lapangan</h5>
                     <div class="card-body">
                         <div class="table-responsive">
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="btn-group">
-                                            <button class="btn btn-danger me-2" onclick="generatePDF()">PDF</button>
-                                            <button class="btn btn-primary me-2" onclick="generateWord()">Word</button>
-                                            <button class="btn btn-success" onclick="generateExcel()">Excel</button>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <a href="catatan-lapangan-edit.php" class="btn btn-success">Edit Catatan Lapangan</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
 
                             <table id="data-table" class="table table-striped table-hover">
                                 <thead>
@@ -179,17 +162,14 @@ require 'ceklogin.php';
                                                     } else {
                                                         echo $rowTemuan['TEMUAN'];
                                                     }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php
+                                                    ?></td>
+                                                <td><?php
                                                     if ($rowTemuan['KTS'] == NULL) {
                                                         echo '<i>Belum Diisi</i>';
                                                     } else {
                                                         echo $rowTemuan['KTS'];
                                                     }
-                                                    ?>
-                                                </td>
+                                                    ?></td>
                                                 <td><?php
                                                     if ($rowTemuan['AKAR_PERMASALAHAN'] == NULL) {
                                                         echo '<i>Belum Diisi</i>';
@@ -204,8 +184,52 @@ require 'ceklogin.php';
                                                         echo $rowTemuan['REKOMENDASI'];
                                                     }
                                                     ?></td>
-                                            </tr>
+                                                <td>
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $rowTemuan['ID_TEMUAN']; ?>">
+                                                        Edit
+                                                    </button>
 
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal<?= $rowTemuan['ID_TEMUAN']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Pass the ID_AUDIT to the modal body -->
+                                                                    <form action="" method="POST">
+                                                                        <input type="hidden" name="id_temuan" value="<?= $rowTemuan['ID_TEMUAN']; ?>">
+                                                                        <div class="mb-3">
+                                                                            <label for="temuan" class="form-label">Temuan</label>
+                                                                            <input type="text" name="temuan" class="form-control" id="temuan" value="<?= $rowTemuan['TEMUAN']; ?>">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="kts" class="form-label">KTS/OB</label>
+                                                                            <input type="text" name="kts" class="form-control" id="kts" value="<?= $rowTemuan['KTS']; ?>">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="akarmasalah" class="form-label">Akar Masalah</label>
+                                                                            <input type="text" name="akarmasalah" class="form-control" id="akarmasalah" value="<?= $rowTemuan['AKAR_PERMASALAHAN']; ?>">
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="rekomendasi" class="form-label">Rekomendasi</label>
+                                                                            <input type="text" name="rekomendasi" class="form-control" id="rekomendasi" value="<?= $rowTemuan['REKOMENDASI']; ?>">
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                        </div>
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
                                     <?php
                                         }
                                     } else {
@@ -221,42 +245,6 @@ require 'ceklogin.php';
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.bundle.js"></script>
                             <!-- Excel (xlsx) library -->
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
-                            <script>
-                                function generatePDF() {
-                                    const element = document.getElementById('data-table');
-                                    const options = {
-                                        margin: 10,
-                                        filename: 'table_to_pdf.pdf',
-                                        image: {
-                                            type: 'jpeg',
-                                            quality: 0.98
-                                        },
-                                        html2canvas: {
-                                            scale: 2
-                                        },
-                                        jsPDF: {
-                                            unit: 'mm',
-                                            format: 'a4',
-                                            orientation: 'portrait'
-                                        }
-                                    };
-
-                                    html2pdf(element, options);
-                                }
-
-                                function generateExcel() {
-                                    const table = document.getElementById('data-table');
-                                    const wb = XLSX.utils.table_to_book(table, {
-                                        sheet: 'Sheet 1'
-                                    });
-                                    XLSX.writeFile(wb, 'table_to_excel.xlsx');
-                                }
-
-                                function generateWord() {
-                                    // Mengarahkan ke skrip PHP yang akan menghasilkan dokumen Word
-                                    window.location.href = 'generate_word_catatan_lapangan.php';
-                                }
-                            </script>
 
                         </div>
                     </div>
@@ -276,36 +264,43 @@ require 'ceklogin.php';
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.bundle.js"></script>
-
-        <script>
-            function generatePDF() {
-                // Select the table element by its ID or class
-                const element = document.getElementById('data-table');
-
-                // Configuration for html2pdf
-                const options = {
-                    margin: 10,
-                    filename: 'table_to_pdf.pdf',
-                    image: {
-                        type: 'jpeg',
-                        quality: 0.98
-                    },
-                    html2canvas: {
-                        scale: 2
-                    },
-                    jsPDF: {
-                        unit: 'mm',
-                        format: 'a4',
-                        orientation: 'portrait'
-                    }
-                };
-
-                // Use html2pdf to generate the PDF
-                html2pdf(element, options);
-            }
-        </script>
-
-
 </body>
+<?php
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve the values from the form
+    $id_temuan = $_POST['id_temuan'];
+    $temuan = $_POST['temuan'];
+    $kts = $_POST['kts'];
+    $akarmasalah = $_POST['akarmasalah'];
+    $rekomendasi = $_POST['rekomendasi'];
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "db_siamiunisla";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE temuan SET
+            TEMUAN = '$temuan',
+            KTS = '$kts',
+            AKAR_PERMASALAHAN = '$akarmasalah',
+            REKOMENDASI = '$rekomendasi'
+            WHERE ID_TEMUAN = '$id_temuan'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo '<script>window.location.href = window.location.href;</script>';
+    } else {
+        $alertMessage = "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
 
 </html>

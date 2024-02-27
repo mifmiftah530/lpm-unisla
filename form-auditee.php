@@ -19,7 +19,7 @@ require("ceklogin.php");
 </head>
 
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #66cdaa;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 me-4" href="dashboard-auditor.php">
             <div class="d-flex align-items-center">
@@ -117,17 +117,13 @@ require("ceklogin.php");
                                         <tr>
                                             <td>Tindak Koreksi</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary">
-                                                    <i class="fas fa-print fa-fw"></i> Cetak
-                                                </a>
+                                                <button class="btn btn-primary me-2" onclick="generateWord2()"><i class="fas fa-print fa-fw"></i> Cetak</button>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Temuan AMI</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary">
-                                                    <i class="fas fa-print fa-fw"></i> Cetak
-                                                </a>
+                                                <button class="btn btn-primary me-2" onclick="generateWord()"><i class="fas fa-print fa-fw"></i> Cetak</button>
                                             </td>
                                         </tr>
                                         <tr>
@@ -159,11 +155,102 @@ require("ceklogin.php");
                             <div class="card-body">
 
                                 <div class="d-flex justify-content-between align-items-center">
+                                    <?php
+                                    $id = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                                    $kriteriaIndikator = mysqli_query($koneksi, "SELECT * FROM beritaacara WHERE ID_AUDITOR = '$id'");
+                                    if (mysqli_num_rows($kriteriaIndikator) > 0) {
+                                        $rowIndikator = mysqli_fetch_array($kriteriaIndikator); ?>
+                                        <table class="table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Formulir</th>
+                                                    <th scope="col">Aksi</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <form action="" method="post">
+                                                        <td><label for="fileUpload" class="form-label me-2">Upload File:</label></td>
+                                                        <td>
+                                                            <input type="hidden" name="id_berita">
+                                                            <input type="text" name="link" class="form-control" id="fileUpload">
+                                                        </td>
+                                                        <td>
+                                                            <button type="submit" class="btn btn-primary ms-2">Upload</button>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="fileUpload" class="form-label me-2">Link Saya: </label></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalzz">
+                                                            Lihat
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    <?php } ?>
+                                    <div class="modal fade" id="exampleModalzz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <?php if ($rowIndikator['LINK_AUDITEE'] == Null) {
+                                                    ?> <span style="color: red;">Belum Upload Link Berita Acara</span>
+                                                    <?php
+                                                    } else { ?>
+                                                        <a href="<?php echo $rowIndikator['LINK_AUDITEE']; ?>"><?php echo $rowIndikator['LINK_AUDITEE']; ?></a>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h6 class="card-subtitle mb-2 text-muted">Status Verifikasi:</h6>
                                     <span class="badge bg-success rounded-pill">Terverifikasi</span>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            // Retrieve the values from the form
+                            $id_auditee = htmlspecialchars($_SESSION['a_global']->ID_AUDITEE);
+                            $link = $_POST['link'];
+
+
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "db_siamiunisla";
+
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            $sql = "UPDATE beritaacara SET
+            LINK_AUDITEE = '$link'
+            WHERE ID_AUDITOR = '$id_auditee'";
+
+                            if ($conn->query($sql) === TRUE) {
+                                echo '<script>window.location.href = window.location.href;</script>';
+                            } else {
+                                $alertMessage = "Error: " . $sql . "<br>" . $conn->error;
+                            }
+
+                            $conn->close();
+                        } ?>
 
                         <div class="card border-success">
                             <div class="card-header bg-success text-white">
@@ -199,6 +286,17 @@ require("ceklogin.php");
                             <script src="assets/demo/chart-bar-demo.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
                             <script src="js/datatables-simple-demo.js"></script>
+                            <script>
+                                function generateWord() {
+                                    // Mengarahkan ke skrip PHP yang akan menghasilkan dokumen Word
+                                    window.location.href = 'generate_word_catatan_lapangan.php';
+                                }
+
+                                function generateWord2() {
+                                    // Mengarahkan ke skrip PHP yang akan menghasilkan dokumen Word
+                                    window.location.href = 'generate_word_tindak_koreksi.php';
+                                }
+                            </script>
 </body>
 
 </html>
